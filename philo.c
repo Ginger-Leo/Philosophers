@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/22 15:56:26 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/05/24 13:54:53 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,35 +50,26 @@ void	struct_filler(t_data_list *data, char **argv)
 	data->sleep_time = ft_atoi(argv[4]);
 	if (data->sleep_time < 0)
 		err_exit(5);
+	data->start_time = what_time_is_it();
+	// if (argv[5])
+	// {
+	// 	data->times_to_eat = ft_atoi(argv[5]);
+	// 	if (data->times_to_eat < 0)
+	// 		err_exit(7);
+	// }
 }
 
 void	philosphize(t_data_list *data)
 {
+	pthread_t p1;
+	
+	pthread_create(&p1, NULL, &dinner_for_one, NULL);
+	pthread_join(p1, NULL);
 	printf("%i\n", data->philosophers);
 	exit(1);
 }
 
-int	ft_atoi(const char *str)
+void	*dinner_for_one(void)
 {
-	long long	rtn;
-	int			neg;
-	int			i;
-
-	rtn = 0;
-	neg = 1;
-	i = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			neg = -1;
-		i++;
-	}
-	while (str[i] != '\0' && (str[i] > 47 && str[i] < 58))
-	{
-		rtn = (rtn * 10) + (str[i] - 48);
-		i++;
-	}
-	return (rtn * neg);
+	printf("this is philo1\n");
 }
