@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/24 13:54:53 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/27 11:16:36 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 		parsing(argv);
 		struct_clearer(&data);
 		struct_filler(&data, argv);
+		// struct_printer(data);
 		philosphize(&data);
 	}
 	else
@@ -34,42 +35,65 @@ void	struct_clearer(t_data_list *data)
 	data->death_time = 0;
 	data->feed_time = 0;
 	data->sleep_time = 0;
+	data->times_to_eat = 0;
+	data->start_time = 0;
 }
 
 void	struct_filler(t_data_list *data, char **argv)
 {
-	data->philosophers = ft_atoi(argv[1]);
-	if (data->philosophers > MAX_PHILOS || data->philosophers < 0) 
+	int	i;
+
+	i = 0;
+	while (i < data->philosophers)
+	{
+	data[i].philosophers = ft_atoi(argv[1]);
+	if (data[i].philosophers > MAX_PHILOS || data->philosophers < 0) 
 		err_exit(1);
-	data->death_time = ft_atoi(argv[2]);
-	if (data->death_time < 0)
+	data[i].death_time = ft_atoi(argv[2]);
+	if (data[i].death_time < 0)
 		err_exit(3);
-	data->feed_time = ft_atoi(argv[3]);
-	if (data->feed_time < 0)
+	data[i].feed_time = ft_atoi(argv[3]);
+	if (data[i].feed_time < 0)
 		err_exit(4);
-	data->sleep_time = ft_atoi(argv[4]);
-	if (data->sleep_time < 0)
+	data[i].sleep_time = ft_atoi(argv[4]);
+	if (data[i].sleep_time < 0)
 		err_exit(5);
-	data->start_time = what_time_is_it();
+	data[i].start_time = what_time_is_it();
+	i++;
 	// if (argv[5])
 	// {
 	// 	data->times_to_eat = ft_atoi(argv[5]);
 	// 	if (data->times_to_eat < 0)
 	// 		err_exit(7);
 	// }
+	}
 }
 
 void	philosphize(t_data_list *data)
 {
-	pthread_t p1;
-	
-	pthread_create(&p1, NULL, &dinner_for_one, NULL);
-	pthread_join(p1, NULL);
-	printf("%i\n", data->philosophers);
+	int			i;
+
+	i = 0;
+	while (i < data->philosophers)
+	{
+		pthread_create(&data[i].thread, NULL, &dinner_for_one, &data[i]);
+		// printf("%i\n", data->philosophers);
+		i++;
+	}
+	i = 0;
+	while (i < data->philosophers)
+	{
+		pthread_join(data[i].thread, NULL);
+		i++;
+	}
+
 	exit(1);
 }
 
-void	*dinner_for_one(void)
+void	*dinner_for_one(void *data)
 {
-	printf("this is philo1\n");
+	t_data_list	*p_data;
+
+	p_data = (t_data_list*)data;
+	struct_printer(*p_data);
 }

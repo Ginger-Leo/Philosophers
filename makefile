@@ -6,17 +6,18 @@
 #    By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 14:32:21 by lstorey           #+#    #+#              #
-#    Updated: 2024/05/22 15:02:02 by lstorey          ###   ########.fr        #
+#    Updated: 2024/05/27 10:25:08 by lstorey          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	philo
 CC			= 	cc
-FLAGS		= 	-Wall -Werror -Wextra -g
+FLAGS		= 	#-Wall -Werror -Wextra -g
 LIBS 		= 	philo.h
 SRC 		=	philo.c\
 				error_printer.c\
-				parsing.c
+				parsing.c\
+				utils.c
 		
 OBJ  		= 	$(SRC:.c=.o) 
 

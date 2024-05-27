@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/05/24 13:48:43 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/27 11:02:06 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,14 @@ size_t	what_time_is_it(void)
 	if(gettimeofday(&time, NULL) == -1)
 		ft_putstr_fd(ERR_TIME, 2);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+void	struct_printer(t_data_list data)
+{
+	printf("Philohopers: %i\n", data.philosophers);
+	printf("death time : %i\n", data.death_time);
+	printf("feed time  : %i\n", data.feed_time);
+	printf("sleep time : %i\n", data.sleep_time);
+	printf("start time : %zu\n", data.start_time);
+	return ;
 }

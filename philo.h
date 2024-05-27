@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/24 14:14:12 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/27 10:57:12 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,35 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # define MAX_PHILOS 200
+# define ERR_TIME "time collection failed"
 
 typedef struct s_data_list
 {
+	pthread_t			thread;
 	int					philosophers;
 	int					death_time;
 	int					feed_time;
 	int					sleep_time;
 	int					times_to_eat;
 	size_t				start_time;
+	int					dummy;
 }	t_data_list;
 
 typedef pthread_mutex_t	t_mtx;
 
 typedef struct s_fork
 {
-	t_mtx		fork;
-	int			fork_id;
+	t_mtx		right_fork;
+	int			r_fork_id;
+	t_mtx		left_fork;
+	int			l_fork_id;
 }				t_fork;
 
 /*					philo.c							*/
 void		struct_clearer(t_data_list *data);
 void		struct_filler(t_data_list *data, char **argv);
 void		philosphize(t_data_list *data);
-void		*dinner_for_one(void);
+void		*dinner_for_one(void *data);
 
 /*					error_printer.c					*/
 void		err_exit(int i);
@@ -54,5 +59,6 @@ int			ft_isdigit(int c);
 /*					utils.c							*/
 int			ft_atoi(const char *str);
 size_t		what_time_is_it(void);
+void		struct_printer(t_data_list data);
 
 #endif
