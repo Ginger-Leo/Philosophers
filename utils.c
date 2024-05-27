@@ -6,7 +6,7 @@
 /*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/05/27 11:02:06 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/05/27 12:26:50 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ size_t	what_time_is_it(void)
 
 void	struct_printer(t_data_list data)
 {
-	printf("Philohopers: %i\n", data.philosophers);
+	printf("Philosophers: %i\n", data.philosophers);
 	printf("death time : %i\n", data.death_time);
 	printf("feed time  : %i\n", data.feed_time);
 	printf("sleep time : %i\n", data.sleep_time);

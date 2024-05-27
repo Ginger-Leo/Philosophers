@@ -6,7 +6,7 @@
 /*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/27 10:57:12 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/05/27 12:03:30 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@
 # define MAX_PHILOS 200
 # define ERR_TIME "time collection failed"
 
+typedef pthread_mutex_t	t_mtx;
+
+typedef struct s_fork
+{
+	t_mtx		right_fork;
+	int			r_fork_id;
+	t_mtx		left_fork;
+	int			l_fork_id;
+}				t_fork;
+
 typedef struct s_data_list
 {
 	pthread_t			thread;
@@ -30,17 +40,10 @@ typedef struct s_data_list
 	int					times_to_eat;
 	size_t				start_time;
 	int					dummy;
+	t_fork				forks;
 }	t_data_list;
 
-typedef pthread_mutex_t	t_mtx;
 
-typedef struct s_fork
-{
-	t_mtx		right_fork;
-	int			r_fork_id;
-	t_mtx		left_fork;
-	int			l_fork_id;
-}				t_fork;
 
 /*					philo.c							*/
 void		struct_clearer(t_data_list *data);
