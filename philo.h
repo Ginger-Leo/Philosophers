@@ -6,7 +6,7 @@
 /*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/27 12:03:30 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/05/27 13:20:42 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,15 @@ typedef struct s_fork
 typedef struct s_data_list
 {
 	pthread_t			thread;
-	int					philosophers;
+	int					no_of_philosophers;
 	int					death_time;
 	int					feed_time;
 	int					sleep_time;
 	int					times_to_eat;
 	size_t				start_time;
-	int					dummy;
+	int					philo_id;
 	t_fork				forks;
 }	t_data_list;
-
-
 
 /*					philo.c							*/
 void		struct_clearer(t_data_list *data);
