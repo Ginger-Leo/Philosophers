@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/27 13:20:42 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/05/28 13:16:21 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,10 @@ typedef struct s_data_list
 	size_t				start_time;
 	int					philo_id;
 	t_fork				forks;
+	t_mtx				mutex;
 }	t_data_list;
 
 /*					philo.c							*/
-void		struct_clearer(t_data_list *data);
-void		struct_filler(t_data_list *data, char **argv);
 void		philosphize(t_data_list *data);
 void		*dinner_for_one(void *data);
 
@@ -60,6 +59,10 @@ int			ft_isdigit(int c);
 /*					utils.c							*/
 int			ft_atoi(const char *str);
 size_t		what_time_is_it(void);
+
+/*					struct_utils.c					*/
+void		struct_filler(t_data_list *data, char **argv);
+void		struct_clearer(t_data_list *data);
 void		struct_printer(t_data_list data);
 
 #endif

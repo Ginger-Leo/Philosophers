@@ -38,4 +38,6 @@ This project main objective is to create threads and, consequentially, to do mul
 	3.6. Zeroes: OK;
 4. Added zero checks with ft_atoi() in parsing();
 5. Reduced redundancies in the code. Works the same, but now its more readable;
+6. Reestructured files for organization;
+7. Initialized the mutex lock within philosophize(), but there is no output coming from the threads;
 ```
