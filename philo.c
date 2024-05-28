@@ -6,7 +6,7 @@
 /*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/27 13:24:51 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/05/28 11:12:51 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	struct_filler(t_data_list *data, char **argv)
 	int	i;
 
 	i = 0;
-	data = (t_data_list *)malloc(sizeof(t_data_list) * atoi(argv[1]));
-	while (i < atoi(argv[1]))
+	data = (t_data_list *)malloc(sizeof(t_data_list) * ft_atoi(argv[1]));
+	while (i < ft_atoi(argv[1]))
 	{
 		data[i].no_of_philosophers = ft_atoi(argv[1]);
 		if (data[i].no_of_philosophers > MAX_PHILOS ||
@@ -63,7 +63,7 @@ void	struct_filler(t_data_list *data, char **argv)
 			err_exit(5);
 		data[i].start_time = what_time_is_it();
 		data[i].philo_id = i + 1;
-		struct_printer(data[i]);
+		struct_printer(data[i]);//remove later
 		i++;
 	// if (argv[5])
 	// {
