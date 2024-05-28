@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/27 13:24:51 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/05/28 10:19:16 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,21 @@ void	struct_filler(t_data_list *data, char **argv)
 	int	i;
 
 	i = 0;
-	data = (t_data_list *)malloc(sizeof(t_data_list) * atoi(argv[1]));
-	while (i < atoi(argv[1]))
+	data = (t_data_list *)malloc(sizeof(t_data_list) * ft_atoi(argv[1]));
+	while (i < ft_atoi(argv[1]))
 	{
 		data[i].no_of_philosophers = ft_atoi(argv[1]);
 		if (data[i].no_of_philosophers > MAX_PHILOS ||
-			data->no_of_philosophers < 0)
+			data->no_of_philosophers <= 0)
 			err_exit(1);
 		data[i].death_time = ft_atoi(argv[2]);
-		if (data[i].death_time < 0)
+		if (data[i].death_time <= 0)
 			err_exit(3);
 		data[i].feed_time = ft_atoi(argv[3]);
-		if (data[i].feed_time < 0)
+		if (data[i].feed_time <= 0)
 			err_exit(4);
 		data[i].sleep_time = ft_atoi(argv[4]);
-		if (data[i].sleep_time < 0)
+		if (data[i].sleep_time <= 0)
 			err_exit(5);
 		data[i].start_time = what_time_is_it();
 		data[i].philo_id = i + 1;

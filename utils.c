@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/05/27 13:23:25 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/05/28 09:57:52 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ size_t	what_time_is_it(void)
 
 void	struct_printer(t_data_list data)
 {
-	printf("Philosophers: %i\n", data.no_of_philosophers);
-	printf("death time : %i\n", data.death_time);
-	printf("feed time  : %i\n", data.feed_time);
-	printf("sleep time : %i\n", data.sleep_time);
-	printf("start time : %zu\n", data.start_time);
+	// printf("Philosophers: %i\n", data.no_of_philosophers);
+	// printf("death time : %i\n", data.death_time);
+	// printf("feed time  : %i\n", data.feed_time);
+	// printf("sleep time : %i\n", data.sleep_time);
+	// printf("start time : %zu\n", data.start_time);
 	printf("ID         : %i\n", data.philo_id);
 	return ;
 }

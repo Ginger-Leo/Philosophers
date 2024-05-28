@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:01:07 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/22 16:10:12 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/05/28 10:23:00 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,14 @@ void	parsing(char **argv)
 	{
 		while (argv[i][j])
 		{
-			if (argv[i][j] == '-')
-				j++;
+			if (ft_atoi(argv[1]) < 1)
+				err_exit(6);
+			else if (ft_atoi(argv[2]) < 1)
+				err_exit(6);
+			else if (ft_atoi(argv[3]) < 1)
+				err_exit(6);
+			else if (ft_atoi(argv[4]) < 1)
+				err_exit(6);
 			if (ft_isdigit(argv[i][j]) == 0)
 				err_exit(6);
 			j++;
