@@ -6,7 +6,7 @@
 /*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/05/28 10:38:18 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/05/28 16:15:49 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,4 @@ size_t	what_time_is_it(void)
 	if(gettimeofday(&time, NULL) == -1)
 		ft_putstr_fd(ERR_TIME, 2);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
-}
-
-void	struct_printer(t_data_list data)
-{
-	printf("Philosophers: %i\n", data.no_of_philosophers);
-	printf("death time  : %i\n", data.death_time);
-	printf("feed time   : %i\n", data.feed_time);
-	printf("sleep time  : %i\n", data.sleep_time);
-	printf("start time  : %zu\n", data.start_time);
-	printf("ID          : %i\n", data.philo_id);
-	return ;
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+         #
+#    By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 14:32:21 by lstorey           #+#    #+#              #
-#    Updated: 2024/05/27 10:25:08 by lstorey          ###   ########.fr        #
+#    Updated: 2024/05/28 13:15:17 by fdessoy-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ LIBS 		= 	philo.h
 SRC 		=	philo.c\
 				error_printer.c\
 				parsing.c\
-				utils.c
+				utils.c\
+				struct_utils.c\
+				main.c\
 		
 OBJ  		= 	$(SRC:.c=.o) 
 

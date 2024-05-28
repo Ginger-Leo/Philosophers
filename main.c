@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/22 15:01:07 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/28 11:57:59 by fdessoy-         ###   ########.fr       */
+/*   Created: 2024/05/28 13:13:56 by fdessoy-          #+#    #+#             */
+/*   Updated: 2024/05/28 13:14:26 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	parsing(char **argv)
+int	main(int argc, char **argv)
 {
-	if (ft_atoi(argv[1]) < 1 || ft_atoi(argv[1]) > 200)
-		err_exit(1);
-	else if (ft_atoi(argv[2]) < 1)
-		err_exit(3);
-	else if (ft_atoi(argv[3]) < 1)
-		err_exit(4);
-	else if (ft_atoi(argv[4]) < 1)
-		err_exit(5);
-}
+	t_data_list	data;
 
-int	ft_isdigit(int c)
-{
-	if (c > 47 && c < 58)
-		return (1);
+	if (argc == 5)
+	{
+		parsing(argv);
+		struct_clearer(&data);
+		struct_filler(&data, argv);
+		// struct_printer(data);
+		philosphize(&data);
+	}
 	else
-		return (0);
+		err_exit(2);
+	return (0);
 }
