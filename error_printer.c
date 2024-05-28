@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:23:15 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/28 10:00:42 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:56:04 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,17 @@
 void	err_exit(int i)
 {
 	if (i == 1)
-		ft_putstr_fd("Incorrect number of philosophers\n", 2);
+		ft_putstr_fd("Incorrect number of philosophers (1 - 200)\n", 2);
 	else if (i == 2)
 		ft_putstr_fd("Incorrect arguments\n4 arguments needed\n", 2);
 	else if (i == 3)
-		ft_putstr_fd("Incorrect death time - must be postive\n", 2);
+		ft_putstr_fd("Incorrect death time - must be postive / ≠ 0\n", 2);
 	else if (i == 4)
-		ft_putstr_fd("Incorrect feed time - must be postive\n", 2);
+		ft_putstr_fd("Incorrect feed time - must be postive / ≠ 0\n", 2);
 	else if (i == 5)
-		ft_putstr_fd("Incorrect sleep time - must be postive\n", 2);
+		ft_putstr_fd("Incorrect sleep time - must be postive / ≠ 0\n", 2);
 	else if (i == 6)
-		ft_putstr_fd("Arguments must be positive integers\n", 2);
-	else if (i == 7)
-		ft_putstr_fd("Incorrect times to eat - must be postive", 2);
+		ft_putstr_fd("Arguments must be positive integers / ≠ 0\n", 2);
 	exit(1);
 }
 
