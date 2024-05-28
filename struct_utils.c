@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/05/28 13:16:41 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:17:55 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	struct_filler(t_data_list *data, char **argv)
 		data[i].sleep_time = ft_atoi(argv[4]);
 		data[i].start_time = what_time_is_it();
 		data[i].philo_id = i + 1;
-		struct_printer(data[i]);
+		// struct_printer(data[i]);
 		i++;
 	}
 }

@@ -6,15 +6,11 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/28 13:14:43 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:19:45 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-
-
-
 // avoid exiting with error code 1, unless error occurs
 // we should lock the threads before creating them
 void	philosphize(t_data_list *data)
