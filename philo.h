@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/29 13:04:05 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:31:50 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 # include <sys/time.h>
 # define MAX_PHILOS 200
 # define ERR_TIME "time collection failed"
@@ -31,8 +32,9 @@ typedef struct s_overseer_list
 	int					sleep_time;
 	int					times_to_eat;
 	size_t				start_time;
+	// int					philo_id;
 	t_mtx				**forks;
-}	t_overseer;
+}	t_overseer_list;
 
 typedef struct s_data_list
 {
@@ -45,9 +47,9 @@ typedef struct s_data_list
 	size_t				start_time;
 	int					philo_id;
 	t_mtx				**forks;
-}	t_data;
+}	t_data_list;
 /*					philo.c							*/
-void		philosophize(t_data **data, t_overseer *overseer, char **argv);
+void	philosophize(t_data_list **data, t_overseer_list *overseer, char **argv);
 void		*dinner_for_one(void *data);
 
 /*					error_printer.c					*/
@@ -63,8 +65,8 @@ int			ft_atoi(const char *str);
 size_t		what_time_is_it(void);
 
 /*					struct_utils.c					*/
-void		struct_filler(t_data **data, t_overseer *overseer, char **argv);
-void		struct_bzero(t_data **data, t_overseer *overseer, char **argv);
-void		struct_printer(t_data *data);
+void	struct_filler(t_data_list **data, t_overseer_list *overseer, char **argv);
+void		struct_bzero(t_data_list **data, t_overseer_list *overseer, char **argv);
+void		struct_printer(t_data_list *data);
 
 #endif

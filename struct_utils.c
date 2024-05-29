@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   struct_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/05/29 13:03:26 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/29 14:39:37 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	struct_bzero(t_data **data, t_overseer *overseer, char **argv)
+void	struct_bzero(t_data_list **data, t_overseer_list *overseer, char **argv)
 {
 	int	i;
 
 	i = 0;
 	while (i < ft_atoi(argv[1]))
 	{
+		data[i] = malloc(sizeof(t_data_list));
 		data[i]->no_of_philosophers = 0;
 		overseer->no_of_philosophers = 0;
 		data[i]->death_time = 0;
@@ -35,11 +36,12 @@ void	struct_bzero(t_data **data, t_overseer *overseer, char **argv)
 		// overseer->philo_id = 0;
 		i++;
 	}
+	data[i] = NULL;
 }
 
 // the parsing function is taking care of negatives
 // the ifs are unnecessary
-void	struct_filler(t_data **data, t_overseer *overseer, char **argv)
+void	struct_filler(t_data_list **data, t_overseer_list *overseer, char **argv)
 {
 	int	i;
 
@@ -47,7 +49,7 @@ void	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 	i = 0;
 	while (i < ft_atoi(argv[1]))
 	{
-		data[i] = malloc(sizeof(t_data));
+		// data[i] = malloc(sizeof(t_data_list));
 		data[i]->no_of_philosophers = ft_atoi(argv[1]);
 		data[i]->death_time = ft_atoi(argv[2]);
 		data[i]->feed_time = ft_atoi(argv[3]);
@@ -58,10 +60,10 @@ void	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 		// struct_printer(data[i]);
 		i++;
 	}
-	data[i] = NULL;
+	// data[i] = NULL;
 }
 
-void	struct_printer(t_data *data)
+void	struct_printer(t_data_list *data)
 {
 	printf("Philosophers: %i\n", data->no_of_philosophers);
 	// printf("death time : %i\n", data->death_time);

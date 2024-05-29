@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:56 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/05/29 13:03:23 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:47:54 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 
 int	main(int argc, char **argv)
 {
-	t_data		**data;
-	t_overseer	*overseer;
+	t_data_list		**data;
+	t_overseer_list	*overseer;
 
 	if (argc == 5)
 	{
-		data = malloc(sizeof(t_data) * (ft_atoi(argv[1]) + 1));
-		overseer = malloc(sizeof(t_overseer));
+		data = malloc(sizeof(t_data_list) * (ft_atoi(argv[1]) + 1));
+		overseer = malloc(sizeof(t_overseer_list));
 		parsing(argv);
 		struct_bzero(data, overseer, argv);
-		printf("here\n");
 		struct_filler(data, overseer, argv);
 		philosophize(data, overseer, argv);
 		// free structs
