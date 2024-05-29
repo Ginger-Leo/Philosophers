@@ -6,7 +6,7 @@
 /*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/29 10:05:29 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/05/29 11:45:28 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,18 @@
 
 typedef pthread_mutex_t	t_mtx;
 
-// typedef struct s_fork
-// {
-// 	t_mtx		right_fork;
-// 	int			r_fork_id;
-// 	t_mtx		left_fork;
-// 	int			l_fork_id;
-// }				t_fork;
+typedef struct s_overseer_list
+{
+	pthread_t			thread;
+	int					no_of_philosophers;
+	int					death_time;
+	int					feed_time;
+	int					sleep_time;
+	int					times_to_eat;
+	size_t				start_time;
+	// int					philo_id;
+	t_mtx				**forks;
+}	t_overseer_list;
 
 typedef struct s_data_list
 {
@@ -40,12 +45,10 @@ typedef struct s_data_list
 	int					times_to_eat;
 	size_t				start_time;
 	int					philo_id;
-	// t_fork				forks;
-	t_mtx				fork;
+	t_mtx				**forks;
 }	t_data_list;
-
 /*					philo.c							*/
-void		philosphize(t_data_list *data, char **argv);
+void	philosophize(t_data_list **data, t_overseer_list *overseer, char **argv);
 void		*dinner_for_one(void *data);
 
 /*					error_printer.c					*/
@@ -61,8 +64,8 @@ int			ft_atoi(const char *str);
 size_t		what_time_is_it(void);
 
 /*					struct_utils.c					*/
-void		struct_filler(t_data_list *data, char **argv);
-void		struct_clearer(t_data_list *data);
-void		struct_printer(t_data_list data);
+void	struct_filler(t_data_list **data, t_overseer_list *overseer, char **argv);
+void		struct_bzero(t_data_list **data, t_overseer_list *overseer, char **argv);
+void		struct_printer(t_data_list *data);
 
 #endif

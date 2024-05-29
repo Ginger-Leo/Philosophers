@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/17 14:32:21 by lstorey           #+#    #+#              #
-#    Updated: 2024/05/29 10:07:04 by lstorey          ###   ########.fr        #
+#    Created: 2024/05/29 11:01:51 by lstorey           #+#    #+#              #
+#    Updated: 2024/05/29 11:01:58 by lstorey          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ $(NAME)		:	$(OBJ)
 all			:	$(NAME)
 
 san			:
-				$(CC) $(FLAGS) -g -fsanitize=address -static-libsan $(SRC) -o san 
+				$(CC) $(FLAGS) -g -fsanitize=thread -static-libsan $(SRC) -o san 
 
 clean		:	
 				rm -f $(OBJ)
