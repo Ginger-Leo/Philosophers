@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:56 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/05/28 13:14:26 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:20:33 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 int	main(int argc, char **argv)
 {
-	t_data_list	data;
+	t_data_list	**data;
 
 	if (argc == 5)
 	{
+		data = malloc(sizeof(t_data_list) * (ft_atoi(argv[1]) + 1));
 		parsing(argv);
 		struct_clearer(&data);
-		struct_filler(&data, argv);
-		// struct_printer(data);
-		philosphize(&data);
+		struct_filler(data, argv);
+		philosphize(&data, argv);
+		// free structs
+		// 
 	}
 	else
 		err_exit(2);

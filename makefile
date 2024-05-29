@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+         #
+#    By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 14:32:21 by lstorey           #+#    #+#              #
-#    Updated: 2024/05/28 13:15:17 by fdessoy-         ###   ########.fr        #
+#    Updated: 2024/05/29 10:07:04 by lstorey          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	philo
 CC			= 	cc
-FLAGS		= 	#-Wall -Werror -Wextra -g
+FLAGS		= 	-Wall -Werror -Wextra -g
 LIBS 		= 	philo.h
 SRC 		=	philo.c\
 				error_printer.c\

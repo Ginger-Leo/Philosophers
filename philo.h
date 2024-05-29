@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/28 13:16:21 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:05:29 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@
 
 typedef pthread_mutex_t	t_mtx;
 
-typedef struct s_fork
-{
-	t_mtx		right_fork;
-	int			r_fork_id;
-	t_mtx		left_fork;
-	int			l_fork_id;
-}				t_fork;
+// typedef struct s_fork
+// {
+// 	t_mtx		right_fork;
+// 	int			r_fork_id;
+// 	t_mtx		left_fork;
+// 	int			l_fork_id;
+// }				t_fork;
 
 typedef struct s_data_list
 {
@@ -40,12 +40,12 @@ typedef struct s_data_list
 	int					times_to_eat;
 	size_t				start_time;
 	int					philo_id;
-	t_fork				forks;
-	t_mtx				mutex;
+	// t_fork				forks;
+	t_mtx				fork;
 }	t_data_list;
 
 /*					philo.c							*/
-void		philosphize(t_data_list *data);
+void		philosphize(t_data_list *data, char **argv);
 void		*dinner_for_one(void *data);
 
 /*					error_printer.c					*/
