@@ -6,13 +6,13 @@
 #    By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/17 14:32:21 by lstorey           #+#    #+#              #
-#    Updated: 2024/05/28 13:15:17 by fdessoy-         ###   ########.fr        #
+#    Updated: 2024/05/29 09:45:25 by fdessoy-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	philo
 CC			= 	cc
-FLAGS		= 	#-Wall -Werror -Wextra -g
+FLAGS		= 	-Wall -Werror -Wextra -g
 LIBS 		= 	philo.h
 SRC 		=	philo.c\
 				error_printer.c\

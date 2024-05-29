@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/28 15:19:45 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/29 09:44:52 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	philosphize(t_data_list *data)
 	if (pthread_mutex_init(&data->mutex, NULL) != 0)
 		err_exit(6);
 	i = 0;
+	printf("No_of_philos: %i\n", data->no_of_philosophers);
 	while (i < data->no_of_philosophers)
 	{
 		if (pthread_create(&data[i].thread, NULL, &dinner_for_one, &data[i]) != 0)
@@ -42,6 +43,7 @@ void	*dinner_for_one(void *data)
 	void	*butt;
 	
 	p_data = (t_data_list*)data;
+	
 	printf("Philosopher: %d: attempting to lock mutex\n", p_data->philo_id);
 	pthread_mutex_lock(&p_data->mutex);
 	printf("Philosopher: %d: locked\n", p_data->philo_id);
