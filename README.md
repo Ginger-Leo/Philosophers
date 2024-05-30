@@ -40,4 +40,12 @@ This project main objective is to create threads and, consequentially, to do mul
 5. Reduced redundancies in the code. Works the same, but now its more readable;
 6. Reestructured files for organization;
 7. Initialized the mutex lock within philosophize(), but there is no output coming from the threads;
+
+29.05.2024
+1. Most of the day went into fixing problem with general syntax to fit our approach of arrays of structs (i.e. each philosopher as a struct within itself);
+2. Fixed segfault that occurred from improper dynamic allocation of memory. Memory allocaiton for the philosophers is now in struct_bzero();
+3. Created separate struct for the thread that will oversee the philosophers called overseer. It has the same info that the philosophers have, but it will not be interacting with the dinner table (aka all the other threads);
+
+30.05.2024
+1. Instead of settings all values of the struct to zero manually, we will be using memset (as allowed by the subject) to have a more scalable solution to initializing our structs;
 ```

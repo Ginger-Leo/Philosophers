@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:56 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/05/29 11:47:54 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/05/30 09:30:30 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	main(int argc, char **argv)
 {
-	t_data_list		**data;
-	t_overseer_list	*overseer;
+	t_data		**data;
+	t_overseer	*overseer;
 
 	if (argc == 5)
 	{
-		data = malloc(sizeof(t_data_list) * (ft_atoi(argv[1]) + 1));
-		overseer = malloc(sizeof(t_overseer_list));
+		data = malloc(sizeof(t_data) * (ft_atoi(argv[1]) + 1));
+		overseer = malloc(sizeof(t_overseer));
 		parsing(argv);
 		struct_bzero(data, overseer, argv);
 		struct_filler(data, overseer, argv);
