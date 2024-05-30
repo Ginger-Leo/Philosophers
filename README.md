@@ -48,4 +48,6 @@ This project main objective is to create threads and, consequentially, to do mul
 
 30.05.2024
 1. Instead of settings all values of the struct to zero manually, we will be using memset (as allowed by the subject) to have a more scalable solution to initializing our structs;
+2. The memset() in our struct_bzero() is working. All philosopher structs and overseer are set to 0. This solution is more scalable since memset does the work for us if we want to add variables for the philosophers later (not the case here though);
+3. 
 ```
