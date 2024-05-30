@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/05/30 09:30:31 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/30 09:56:44 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	struct_bzero(t_data **data, t_overseer *overseer, char **argv)
 	while (i < ft_atoi(argv[1]))
 	{
 		data[i] = malloc(sizeof(t_data));
-		memset(overseer, 0, sizeof(t_overseer *));
+		memset(overseer, 0, sizeof(t_overseer));
 		data[i]->no_of_philosophers = 0;
 		data[i]->death_time = 0;
 		data[i]->feed_time = 0;
