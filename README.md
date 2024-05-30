@@ -48,4 +48,6 @@ This project main objective is to create threads and, consequentially, to do mul
 
 30.05.2024
 1. Instead of settings all values of the struct to zero manually, we will be using memset (as allowed by the subject) to have a more scalable solution to initializing our structs;
+
+test
 ```
