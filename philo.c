@@ -6,13 +6,10 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/05/30 09:30:30 by fdessoy-         ###   ########.fr       */
-=======
-/*   Updated: 2024/05/30 10:16:51 by fdessoy-         ###   ########.fr       */
->>>>>>> Leo
+/*   Updated: 2024/05/30 15:06:26 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "philo.h"
 // avoid exiting with error code 1, unless error occurs

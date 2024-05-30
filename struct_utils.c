@@ -6,11 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/05/30 09:56:44 by fdessoy-         ###   ########.fr       */
-=======
-/*   Updated: 2024/05/30 14:07:36 by fdessoy-         ###   ########.fr       */
->>>>>>> Leo
+/*   Updated: 2024/05/30 15:07:04 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +21,7 @@ void	struct_bzero(t_data **data, t_overseer *overseer, char **argv)
 	{
 		data[i] = malloc(sizeof(t_data));
 		memset(overseer, 0, sizeof(t_overseer));
-<<<<<<< HEAD
-		data[i]->no_of_philosophers = 0;
-		data[i]->death_time = 0;
-		data[i]->feed_time = 0;
-		data[i]->sleep_time = 0;
-		data[i]->times_to_eat = 0;
-		data[i]->start_time = 0;
-		data[i]->philo_id = 0;
-		// overseer->death_time = 0;
-		// overseer->feed_time = 0;
-		// overseer->sleep_time = 0;
-		// overseer->times_to_eat = 0;
-		// overseer->no_of_philosophers = 0;
-		// overseer->start_time = 0;
-		// overseer->philo_id = 0;
-=======
 		memset((*data), 0, sizeof(t_data));
->>>>>>> Leo
 		i++;
 	}
 	data[i] = NULL;
@@ -58,10 +37,6 @@ void	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 	(void)overseer;
 	while (i < ft_atoi(argv[1]))
 	{
-<<<<<<< HEAD
-		// data[i] = malloc(sizeof(t_data));
-=======
->>>>>>> Leo
 		data[i]->no_of_philosophers = ft_atoi(argv[1]);
 		data[i]->death_time = ft_atoi(argv[2]);
 		data[i]->feed_time = ft_atoi(argv[3]);
@@ -72,10 +47,6 @@ void	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 		data[i]->philo_id = i + 1;
 		i++;
 	}
-<<<<<<< HEAD
-	// data[i] = NULL;
-=======
->>>>>>> Leo
 }
 
 void	struct_printer(t_data *data)
