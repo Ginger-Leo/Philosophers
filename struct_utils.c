@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/05/30 10:07:18 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/30 10:15:06 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,14 @@ void	struct_bzero(t_data **data, t_overseer *overseer, char **argv)
 	{
 		data[i] = malloc(sizeof(t_data));
 		memset(overseer, 0, sizeof(t_overseer));
-		data[i]->no_of_philosophers = 0;
-		data[i]->death_time = 0;
-		data[i]->feed_time = 0;
-		data[i]->sleep_time = 0;
-		data[i]->times_to_eat = 0;
-		data[i]->start_time = 0;
-		data[i]->philo_id = 0;
+		memset((*data), 0, sizeof(t_data));
+		// data[i]->no_of_philosophers = 0;
+		// data[i]->death_time = 0;
+		// data[i]->feed_time = 0;
+		// data[i]->sleep_time = 0;
+		// data[i]->times_to_eat = 0;
+		// data[i]->start_time = 0;
+		// data[i]->philo_id = 0;
 		// overseer->death_time = 0;
 		// overseer->feed_time = 0;
 		// overseer->sleep_time = 0;
