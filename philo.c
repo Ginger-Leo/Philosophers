@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/29 11:49:22 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/05/30 10:08:05 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 // avoid exiting with error code 1, unless error occurs
 // we should lock the threads before creating them
-void	philosophize(t_data_list **data, t_overseer_list *overseer, char **argv)
+void	philosophize(t_data **data, t_overseer *overseer, char **argv)
 {
 	int			i;
 
@@ -45,10 +45,10 @@ void	philosophize(t_data_list **data, t_overseer_list *overseer, char **argv)
 
 void	*dinner_for_one(void *data)
 {
-	t_data_list	*p_data;
+	t_data	*p_data;
 	void		*butt = NULL;
 
-	p_data = (t_data_list*)data;
+	p_data = (t_data*)data;
 	// printf("Philosopher: %d: attempting to lock mutex\n", p_data->philo_id);
 	// pthread_mutex_lock(&p_data->forks[i]);
 	// printf("Philosopher: %d: locked\n", p_data->philo_id);
