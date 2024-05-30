@@ -6,7 +6,11 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/05/30 09:30:31 by fdessoy-         ###   ########.fr       */
+=======
+/*   Updated: 2024/05/30 10:49:22 by fdessoy-         ###   ########.fr       */
+>>>>>>> Leo
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +19,7 @@
 # include <pthread.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <string.h>
 # include <stdlib.h>
 # include <string.h>
 # include <sys/time.h>
@@ -49,7 +54,11 @@ typedef struct s_data_list
 	t_mtx				**forks;
 }	t_data;
 /*					philo.c							*/
+<<<<<<< HEAD
 void	philosophize(t_data **data, t_overseer *overseer, char **argv);
+=======
+void		philosophize(t_data **data, t_overseer *overseer, char **argv);
+>>>>>>> Leo
 void		*dinner_for_one(void *data);
 
 /*					error_printer.c					*/
@@ -59,13 +68,19 @@ void		ft_putstr_fd(char *str, int fd);
 /*					parsing.c						*/
 void		parsing(char **argv);
 int			ft_isdigit(int c);
+int			count_args(int argc);
 
 /*					utils.c							*/
 int			ft_atoi(const char *str);
 size_t		what_time_is_it(void);
+void		free_array(void **array);
 
 /*					struct_utils.c					*/
+<<<<<<< HEAD
 void	struct_filler(t_data **data, t_overseer *overseer, char **argv);
+=======
+void		struct_filler(t_data **data, t_overseer *overseer, char **argv);
+>>>>>>> Leo
 void		struct_bzero(t_data **data, t_overseer *overseer, char **argv);
 void		struct_printer(t_data *data);
 

@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 16:23:15 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/28 13:12:38 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/30 10:54:03 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	err_exit(int i)
 	if (i == 1)
 		ft_putstr_fd("Incorrect number of philosophers (1 - 200)\n", 2);
 	else if (i == 2)
-		ft_putstr_fd("Incorrect arguments\n4 arguments needed\n", 2);
+		ft_putstr_fd("Incorrect arguments\n5 arguments needed\n", 2);
 	else if (i == 3)
 		ft_putstr_fd("Incorrect death time - must be postive / ≠ 0\n", 2);
 	else if (i == 4)
@@ -28,6 +28,8 @@ void	err_exit(int i)
 		ft_putstr_fd("Mutex initialization failed\n", 2);
 	else if (i == 7)
 		ft_putstr_fd("Thread creation failed\n", 2);
+	else if (i == 8)
+		ft_putstr_fd("Incorrect times to eat - must be positive and ≠ 0\n", 2);
 	exit(1);
 }
 

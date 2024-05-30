@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/05/28 16:15:49 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/05/30 10:51:22 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,19 @@ size_t	what_time_is_it(void)
 	if(gettimeofday(&time, NULL) == -1)
 		ft_putstr_fd(ERR_TIME, 2);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
+
+void	free_array(void **array)
+{
+	int	i;
+
+	i = 0;
+	if (array == NULL)
+		return ;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
 }

@@ -6,7 +6,11 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/05/30 09:30:30 by fdessoy-         ###   ########.fr       */
+=======
+/*   Updated: 2024/05/30 10:16:51 by fdessoy-         ###   ########.fr       */
+>>>>>>> Leo
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +24,7 @@ void	philosophize(t_data **data, t_overseer *overseer, char **argv)
 	i = 0;
 	while (i < ft_atoi(argv[1]))
 	{
-		if (pthread_mutex_init(data[i]->forks[i], NULL) != 0)
+		if (pthread_mutex_init(data[i]->forks[i], NULL) != 0) // segfault is here
 			err_exit(6);
 		if (pthread_create(&data[i]->thread, NULL, &dinner_for_one,
 				&data[i]) != 0)
