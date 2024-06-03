@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/03 11:43:05 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/03 13:48:32 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,15 @@ void	philosophize(t_data **data, t_overseer *overseer, char **argv)
 	int			i;
 
 	i = 0;
-	
 	while (i < overseer->no_of_philosophers)
 	{
-		printf("here\n");
+		
 		overseer->forks[i] = malloc(sizeof(t_mtx));
 		data[i]->forks = overseer->forks;
-		if (pthread_mutex_init(data[i]->forks[i], NULL) != 0) //segfault is here
+		if (pthread_mutex_init(data[i]->forks[i], NULL) != 0)
 			err_exit(6);
 		if (pthread_create(&data[i]->thread, NULL, &dinner_for_one,
-				&data[i]) != 0) // if forks becomes a single pointer, it fails here
+				&data[i]) != 0)
 			err_exit(7);
 		i++;
 	}
@@ -46,18 +45,20 @@ void	philosophize(t_data **data, t_overseer *overseer, char **argv)
 		i++;
 	}
 }
-// segfaulting is coming from within our threads
+
 void	*dinner_for_one(void *data)
 {
-	t_data		*p_data;
+	t_data		**p_data;
 	void		*butt = NULL;
+	int			i;
 
-	p_data = (t_data*)data;
-	// printf("Philosopher: %d: attempting to lock mutex\n", p_data->philo_id);
-	// pthread_mutex_lock(&p_data->forks[i]);
-	// printf("Philosopher: %d: locked\n", p_data->philo_id);
-	// usleep(42);
-	// pthread_mutex_unlock(&p_data->forks);
-	// printf("Philosopher: %d: locked\n", p_data->philo_id);
+	i = 0;
+	p_data = (t_data **)data;
+	printf("Philosopher: %d: attempting to lock mutex\n", p_data[i]->philo_id);
+	pthread_mutex_lock(p_data[i]->forks[i]);
+	printf("Philosopher: %d: locked\n", p_data[i]->philo_id);
+	usleep(42);
+	pthread_mutex_unlock(p_data[i]->forks[i]);
+	printf("Philosopher: %d: unlocked\n", p_data[i]->philo_id);
 	return (butt);
 }
