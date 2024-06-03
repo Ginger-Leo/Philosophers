@@ -30,12 +30,12 @@ This project main objective is to create threads and, consequentially, to do mul
 1. In parsing() the loop was not outputting the proper message for negative numbers being inputted. Took out the if statement that was blocking the message;
 2. Git branches were outdated, got all branches up to date;
 3. Tested for different positive integer cases of philosophers:
-	3.1. One philosopher: OK;
-	3.2. Five philosophers: OK;
-	3.3. Zero before actual number of philos: OK (all cases);
-	3.4. 200 philos: OK;
-	3.5. Negatives (error handling): OK;
-	3.6. Zeroes: OK;
+	- One philosopher: OK;
+	- Five philosophers: OK;
+	- Zero before actual number of philos: OK (all cases);
+	- 200 philos: OK;
+	- Negatives (error handling): OK;
+	- Zeroes: OK;
 4. Added zero checks with ft_atoi() in parsing();
 5. Reduced redundancies in the code. Works the same, but now its more readable;
 6. Reestructured files for organization;
@@ -49,5 +49,8 @@ This project main objective is to create threads and, consequentially, to do mul
 30.05.2024
 1. Instead of settings all values of the struct to zero manually, we will be using memset (as allowed by the subject) to have a more scalable solution to initializing our structs;
 2. The memset() in our struct_bzero() is working. All philosopher structs and overseer are set to 0. This solution is more scalable since memset does the work for us if we want to add variables for the philosophers later (not the case here though);
-3. 
+
+
+03.06.2024
+1. Overseer was missing variables. Therefore, in struct_filler() the variables that are assigned after the loop to avoid unnecessary overwritting inside the loop. Assignment takes less processing power than an assignment, therefore we are just taking the variables out of the first philosopher, because there must always be at least ONE philosopher;
 ```

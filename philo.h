@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/30 15:07:14 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/03 10:31:30 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 typedef pthread_mutex_t	t_mtx;
 
-typedef struct s_overseer_list
+typedef struct s_overseer
 {
 	pthread_t			thread;
 	int					no_of_philosophers;
@@ -37,7 +37,7 @@ typedef struct s_overseer_list
 	t_mtx				**forks;
 }	t_overseer;
 
-typedef struct s_data_list
+typedef struct s_data
 {
 	pthread_t			thread;
 	int					no_of_philosophers;
@@ -70,6 +70,6 @@ void		free_array(void **array);
 /*					struct_utils.c					*/
 void		struct_filler(t_data **data, t_overseer *overseer, char **argv);
 void		struct_bzero(t_data **data, t_overseer *overseer, char **argv);
-void		struct_printer(t_data *data);
+void		struct_printer(t_data **data, t_overseer *overseer, char **argv);
 
 #endif

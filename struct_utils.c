@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/05/30 15:07:04 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/03 10:34:04 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 	int	i;
 
 	i = 0;
-	(void)overseer;
 	while (i < ft_atoi(argv[1]))
 	{
 		data[i]->no_of_philosophers = ft_atoi(argv[1]);
@@ -47,15 +46,34 @@ void	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 		data[i]->philo_id = i + 1;
 		i++;
 	}
+	overseer->no_of_philosophers = ft_atoi(argv[1]);
+	overseer->death_time = ft_atoi(argv[2]);
+	overseer->feed_time = ft_atoi(argv[3]);
+	overseer->sleep_time = ft_atoi(argv[4]);
+	if (argv[5])
+		overseer->times_to_eat = ft_atoi(argv[5]);
+	overseer->start_time = what_time_is_it();
 }
 
-void	struct_printer(t_data *data)
+void	struct_printer(t_data **data, t_overseer *overseer, char **argv)
 {
-	printf("Philosophers: %i\n", data->no_of_philosophers);
-	// printf("death time : %i\n", data->death_time);
-	// printf("feed time  : %i\n", data->feed_time);
-	// printf("sleep time : %i\n", data->sleep_time);
-	// printf("start time : %zu\n", data->start_time);
-	printf("ID         : %i\n", data->philo_id);
+	int i = 0;
+
+	while (i < ft_atoi(argv[1]))
+	{
+		printf("Philosophers: %i\n", data[i]->no_of_philosophers);
+		printf("death time : %i\n", data[i]->death_time);
+		printf("feed time  : %i\n", data[i]->feed_time);
+		printf("sleep time : %i\n", data[i]->sleep_time);
+		printf("start time : %zu\n", data[i]->start_time);
+		printf("ID         : %i\n\n", data[i]->philo_id);
+		i++;
+	}
+	printf("\n ======= OVERSEER  ======= \n\n");
+	printf("Philosophers: %i\n", overseer->no_of_philosophers);
+	printf("death time : %i\n", overseer->death_time);
+	printf("feed time  : %i\n", overseer->feed_time);
+	printf("sleep time : %i\n", overseer->sleep_time);
+	printf("start time : %zu\n", overseer->start_time);
 	return ;
 }
