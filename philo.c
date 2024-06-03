@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/03 13:48:32 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:34:23 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,12 @@ void	*dinner_for_one(void *data)
 	i = 0;
 	p_data = (t_data **)data;
 	printf("Philosopher: %d: attempting to lock mutex\n", p_data[i]->philo_id);
-	pthread_mutex_lock(p_data[i]->forks[i]);
+	if (pthread_mutex_lock(p_data[i]->forks[i]) != 0)
+		err_exit(9);
 	printf("Philosopher: %d: locked\n", p_data[i]->philo_id);
-	usleep(42);
-	pthread_mutex_unlock(p_data[i]->forks[i]);
+	usleep(420000);
+	if (pthread_mutex_unlock(p_data[i]->forks[i]) != 0)
+		err_exit(10);
 	printf("Philosopher: %d: unlocked\n", p_data[i]->philo_id);
 	return (butt);
 }
