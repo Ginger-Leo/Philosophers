@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+         #
+#    By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/05/29 11:01:51 by lstorey           #+#    #+#              #
-#    Updated: 2024/05/29 11:01:58 by lstorey          ###   ########.fr        #
+#    Created: 2024/05/30 10:11:18 by fdessoy-          #+#    #+#              #
+#    Updated: 2024/05/30 10:11:20 by fdessoy-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ $(NAME)		:	$(OBJ)
 all			:	$(NAME)
 
 san			:
-				$(CC) $(FLAGS) -g -fsanitize=thread -static-libsan $(SRC) -o san 
+				$(CC) $(FLAGS) -g -fsanitize=address -static-libsan $(SRC) -o san 
 
 clean		:	
 				rm -f $(OBJ)

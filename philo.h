@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/30 10:49:22 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:07:14 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <stdlib.h>
+# include <string.h>
 # include <sys/time.h>
 # define MAX_PHILOS 200
 # define ERR_TIME "time collection failed"

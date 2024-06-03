@@ -6,9 +6,10 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:56 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/05/30 14:06:27 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/05/30 15:06:12 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "philo.h"
 
@@ -19,6 +20,8 @@ int	main(int argc, char **argv)
 
 	if (argc == 5 || argc == 6)
 	{
+		data = malloc(sizeof(t_data) * (ft_atoi(argv[1]) + 1));
+		overseer = malloc(sizeof(t_overseer));
 		parsing(argv);
 		data = malloc(sizeof(t_data) * (ft_atoi(argv[1]) + 1));
 		overseer = malloc(sizeof(t_overseer));
