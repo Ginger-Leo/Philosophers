@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/30 10:16:51 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/03 09:29:43 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	philosophize(t_data **data, t_overseer *overseer, char **argv)
 	while (i < ft_atoi(argv[1]))
 	{
 		if (pthread_join(data[i]->thread, NULL) != 0)
-			err_exit(7);
-		printf("HERE\n");//PRINTF
 		i++;
 	}
 	i = 0;
