@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/03 10:34:04 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:39:48 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 	overseer->sleep_time = ft_atoi(argv[4]);
 	if (argv[5])
 		overseer->times_to_eat = ft_atoi(argv[5]);
+	overseer->forks = malloc((overseer->no_of_philosophers + 1) * sizeof(t_mtx *));
 	overseer->start_time = what_time_is_it();
 }
 
