@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:56 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/03 15:19:59 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:54:04 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	main(int argc, char **argv)
 
 	if (argc == 5 || argc == 6)
 	{
-		// data = malloc(sizeof(t_data) * (ft_atoi(argv[1]) + 1));
-		// overseer = malloc(sizeof(t_overseer));
 		parsing(argv);
 		data = malloc(sizeof(t_data) * (ft_atoi(argv[1]) + 1));
 		overseer = malloc(sizeof(t_overseer));
@@ -29,7 +27,7 @@ int	main(int argc, char **argv)
 		struct_filler(data, overseer, argv);
 		// struct_printer(data, overseer, argv);
 		philosophize(data, overseer, argv);
-		printf("we arrived safely here\n");
+		printf("We arrived to the end of the simulation\n");
 		// free structs
 	}
 	else

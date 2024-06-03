@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:01:07 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/30 14:02:01 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:41:56 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	parsing(char **argv)
 {
-	if (ft_atoi(argv[1]) < 1 || ft_atoi(argv[1]) > 200)
+	if (ft_atoi(argv[1]) < 1 || ft_atoi(argv[1]) > MAX_PHILOS)
 		err_exit(1);
 	else if (ft_atoi(argv[2]) < 1)
 		err_exit(3);

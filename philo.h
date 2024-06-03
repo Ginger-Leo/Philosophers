@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/03 15:33:32 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:49:57 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ typedef struct s_overseer
 	int					feed_time;
 	int					sleep_time;
 	int					times_to_eat;
+	int					death_flag;
+	int					eaten_flag;
 	size_t				start_time;
 	t_mtx				**forks;
 }	t_overseer;
@@ -46,6 +48,7 @@ typedef struct s_data
 	int					times_to_eat;
 	size_t				start_time;
 	int					philo_id;
+	t_overseer			*overseer;
 	t_mtx				**forks;
 }	t_data;
 /*					philo.c							*/
