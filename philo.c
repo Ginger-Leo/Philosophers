@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/05/30 15:06:26 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/03 09:28:56 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	philosophize(t_data **data, t_overseer *overseer, char **argv)
 	{
 		if (pthread_join(data[i]->thread, NULL) != 0)
 			err_exit(7);
-		printf("HERE\n");//PRINTF
 		i++;
 	}
 	i = 0;
@@ -43,7 +42,7 @@ void	philosophize(t_data **data, t_overseer *overseer, char **argv)
 		i++;
 	}
 }
-
+// segfaulting is coming from within our threads
 void	*dinner_for_one(void *data)
 {
 	t_data	*p_data;
