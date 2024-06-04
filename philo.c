@@ -6,20 +6,21 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/04 12:22:41 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/04 13:35:59 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "philo.h"
 // at this point we should avoid using err_exit()
-void	philosophize(t_data **data, t_overseer *overseer, char **argv)
+void	philosophize(t_data **data, t_overseer *overseer)
 {
 	int			i;
 
 	i = 0;
 	while (i < overseer->no_of_philosophers)
 	{
+	;
 		overseer->forks[i] = malloc(sizeof(t_mtx));
 		if (!overseer->forks)
 			err_exit(7);
@@ -38,10 +39,9 @@ void	philosophize(t_data **data, t_overseer *overseer, char **argv)
 			nuka_cola("Thread creation failed\n", data, overseer);
 		i++;
 	}
-	nuka_cola(data, overseer);
 }
 
-static void	*dinner_for_x(void *data)
+void	*dinner_for_x(void *data)
 {
 	t_data			**p_data;
 	t_overseer		*o_data;
@@ -50,10 +50,12 @@ static void	*dinner_for_x(void *data)
 	i = 0;
 	p_data = (t_data **)data;
 	o_data = (*p_data)->overseer;
+	
 	wait_in_line_sir(p_data, o_data, LOCK); //forks are locked
 	while (o_data->eaten_flag != 1 && o_data->death_flag != 1) // this condition is neccessary for the simulation to continue until death
 	{
 		wait_in_line_sir(p_data, o_data, UNLOCK); //forks are unlocked
+		printf("In dinner_for_x\n");
 		died_of_cringe(p_data, o_data);
 	}
 	return (data);
@@ -64,12 +66,15 @@ void	wait_in_line_sir(t_data **data, t_overseer *overseer, int flag)
 	int	i;
 
 	i = 0;
+	
 	while (i < overseer->no_of_philosophers)
 	{
+		
 		if (flag == LOCK)
 		{
 			if (pthread_mutex_lock(data[i]->forks[i]) != 0)
 				nuka_cola("Mutex lock failure\n", data, overseer);
+			printf("here\n");
 		}
 		if (flag == UNLOCK)
 		{
@@ -82,8 +87,11 @@ void	wait_in_line_sir(t_data **data, t_overseer *overseer, int flag)
 
 void	died_of_cringe(t_data **data, t_overseer *overseer)
 {
-	(void)data;
-	(void)overseer;
+	if ((*data)->sleep_time > (*data)->death_time)
+	{
+		overseer->death_flag = 1;
+		nuka_cola("DED", data, overseer);
+	}
 }
 
 		// printf("Philosopher: %d: attempting to lock mutex\n", p_data[i]->philo_id);
