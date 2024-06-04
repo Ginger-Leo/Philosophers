@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:01:07 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/03 15:41:56 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/04 12:22:18 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	parsing(char **argv)
 	if (argv[5])
 	{
 		if (ft_atoi(argv[5]) < 0 || !ft_isdigit(argv[5][0]))
-			err_exit(8);
+			err_exit(6);
 	}
 }
 

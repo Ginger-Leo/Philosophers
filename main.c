@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:56 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/03 15:54:04 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/04 12:14:01 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	main(int argc, char **argv)
 		struct_filler(data, overseer, argv);
 		// struct_printer(data, overseer, argv);
 		philosophize(data, overseer, argv);
-		printf("We arrived to the end of the simulation\n");
 		// free structs
+		nuka_cola(data, overseer);
 	}
 	else
 		err_exit(2);

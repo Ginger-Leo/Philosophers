@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/03 15:49:57 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/04 12:30:08 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <string.h>
 # include <sys/time.h>
 # define MAX_PHILOS 200
+# define LOCK 1
+# define UNLOCK 2
 # define ERR_TIME "time collection failed"
 
 typedef pthread_mutex_t	t_mtx;
@@ -53,7 +55,8 @@ typedef struct s_data
 }	t_data;
 /*					philo.c							*/
 void		philosophize(t_data **data, t_overseer *overseer, char **argv);
-void		*dinner_for_one(void *data);
+void		wait_in_line_sir(t_data **data, t_overseer *overseer, int flag);
+void		died_of_cringe(t_data **data, t_overseer *overseer);
 
 /*					error_printer.c					*/
 void		err_exit(int i);
@@ -68,10 +71,12 @@ int			count_args(int argc);
 int			ft_atoi(const char *str);
 size_t		what_time_is_it(void);
 void		free_array(void **array);
+void		nuka_cola(char *str, t_data **data, t_overseer *overseer);
 
 /*					struct_utils.c					*/
 void		struct_filler(t_data **data, t_overseer *overseer, char **argv);
 void		struct_bzero(t_data **data, t_overseer *overseer, char **argv);
+void		overseer_filler(t_overseer *overseer, char **argv);
 void		struct_printer(t_data **data, t_overseer *overseer, char **argv);
 
 #endif

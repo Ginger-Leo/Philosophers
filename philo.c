@@ -6,14 +6,13 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/03 15:55:43 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/04 12:22:41 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "philo.h"
-// avoid exiting with error code 1, unless error occurs
-// we should lock the threads before creating them
+// at this point we should avoid using err_exit()
 void	philosophize(t_data **data, t_overseer *overseer, char **argv)
 {
 	int			i;
@@ -22,50 +21,76 @@ void	philosophize(t_data **data, t_overseer *overseer, char **argv)
 	while (i < overseer->no_of_philosophers)
 	{
 		overseer->forks[i] = malloc(sizeof(t_mtx));
+		if (!overseer->forks)
+			err_exit(7);
 		data[i]->forks = overseer->forks;
 		if (pthread_mutex_init(data[i]->forks[i], NULL) != 0)
-			err_exit(6);
-		if (pthread_create(&data[i]->thread, NULL, &dinner_for_one,
+			nuka_cola("Mutex init failed\n", data, overseer);
+		if (pthread_create(&data[i]->thread, NULL, &dinner_for_x,
 				&data[i]) != 0)
-			err_exit(7);
-		i++;
-	}
-	i = 0;
-	while (i < ft_atoi(argv[1]))
-	{
-		if (pthread_join(data[i]->thread, NULL) != 0)
-			err_exit(7);
+			nuka_cola("Thread creation failed\n", data, overseer);
 		i++;
 	}
 	i = 0;
 	while (i < overseer->no_of_philosophers)
 	{
-		pthread_mutex_destroy(overseer->forks[i]);
+		if (pthread_join(data[i]->thread, NULL) != 0)
+			nuka_cola("Thread creation failed\n", data, overseer);
 		i++;
 	}
+	nuka_cola(data, overseer);
 }
 
-void	*dinner_for_one(void *data)
+static void	*dinner_for_x(void *data)
 {
 	t_data			**p_data;
 	t_overseer		*o_data;
-	void			*butt = NULL;
 	int				i;
 
 	i = 0;
 	p_data = (t_data **)data;
 	o_data = (*p_data)->overseer;
-	printf("Overseer death flag: %d (should be zero)\n", o_data->death_flag);
+	wait_in_line_sir(p_data, o_data, LOCK); //forks are locked
 	while (o_data->eaten_flag != 1 && o_data->death_flag != 1) // this condition is neccessary for the simulation to continue until death
 	{
-		printf("Philosopher: %d: attempting to lock mutex\n", p_data[i]->philo_id);
-		if (pthread_mutex_lock(p_data[i]->forks[i]) != 0)
-			err_exit(9);
-		printf("Philosopher: %d: locked\n", p_data[i]->philo_id);
-		usleep(42000);
-		if (pthread_mutex_unlock(p_data[i]->forks[i]) != 0)
-			err_exit(10);
-		printf("Philosopher: %d: unlocked\n", p_data[i]->philo_id);
+		wait_in_line_sir(p_data, o_data, UNLOCK); //forks are unlocked
+		died_of_cringe(p_data, o_data);
 	}
-	return (butt);
+	return (data);
 }
+
+void	wait_in_line_sir(t_data **data, t_overseer *overseer, int flag)
+{
+	int	i;
+
+	i = 0;
+	while (i < overseer->no_of_philosophers)
+	{
+		if (flag == LOCK)
+		{
+			if (pthread_mutex_lock(data[i]->forks[i]) != 0)
+				nuka_cola("Mutex lock failure\n", data, overseer);
+		}
+		if (flag == UNLOCK)
+		{
+			if (pthread_mutex_unlock(data[i]->forks[i]) != 0)
+				nuka_cola("Mutex unlock failure\n", data, overseer);
+			usleep(42 * 1000);
+		}
+	}
+}
+
+void	died_of_cringe(t_data **data, t_overseer *overseer)
+{
+	(void)data;
+	(void)overseer;
+}
+
+		// printf("Philosopher: %d: attempting to lock mutex\n", p_data[i]->philo_id);
+		// if (pthread_mutex_lock(p_data[i]->forks[i]) != 0)
+		// 	err_exit(9);
+		// printf("Philosopher: %d: locked\n", p_data[i]->philo_id);
+		// usleep(42 * 1000);
+		// if (pthread_mutex_unlock(p_data[i]->forks[i]) != 0)
+		// 	err_exit(10);
+		// printf("Philosopher: %d: unlocked\n", p_data[i]->philo_id);
