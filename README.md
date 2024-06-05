@@ -63,3 +63,14 @@ This project main objective is to create threads and, consequentially, to do mul
 3. The logic of philosopize() has been altered to allow first locking, and then entering the routine of the philosophers;
 4. So far we have accomplished to make a simple condition for death: when sleep is bigger than time to die;
 ```
+
+Things to do....
+1. Make function for resetting death timer after eating.
+2. Make sleep timer to start after eating (must run for 'time to sleep').
+3. Make mutex for printer so nothing gets printed after a death of a philo.
+4. Make a printer with standardised messages "philo no.< > is < >" etc...
+```
+
+About author.
+Feliepe is a fiecely erotic, peacock introvert. he struggles walking in straight lines due to his tiny feet and terrible sense of direction. If he were an animal, he'd be jellyfish, because thier personalities are so similar.
+```
