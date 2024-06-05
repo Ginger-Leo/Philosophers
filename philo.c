@@ -6,33 +6,32 @@
 /*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/05 11:13:26 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/05 11:17:44 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 // avoid exiting with error code 1, unless error occurs
 // we should lock the threads before creating them
-void	philosophize(t_data **data, t_overseer *overseer, char **argv)
+void	philosophize(t_data **data, t_overseer *overseer)
 {
 	int			i;
 
 	i = 0;
-	while (i < ft_atoi(argv[1]))
+	while (i < overseer->no_of_philosophers)
 	{
 		if (pthread_mutex_init(data[i]->forks[i], NULL) != 0)
-			err_exit(6);
-		if (pthread_create(&data[i]->thread, NULL, &dinner_for_one,
+			nuka_cola("Mutex init failed\n", data, overseer);
+		if (pthread_create(&data[i]->thread, NULL, &dinner_for_x,
 				&data[i]) != 0)
-			err_exit(7); 
+			nuka_cola("Thread creation failed\n", data, overseer);
 		i++;
 	}
 	i = 0;
-	while (i < ft_atoi(argv[1]))
+	while (i < overseer->no_of_philosophers)
 	{
 		if (pthread_join(data[i]->thread, NULL) != 0)
-			err_exit(7);
-		printf("HERE\n");//PRINTF
+			nuka_cola("Thread creation failed\n", data, overseer);
 		i++;
 	}
 }
@@ -46,7 +45,6 @@ void	*dinner_for_x(void *data)
 	i = 0;
 	p_data = (t_data **)data;
 	o_data = (*p_data)->overseer;
-	
 	wait_in_line_sir(p_data, o_data, LOCK); //forks are locked
 	while (o_data->eaten_flag != 1 && o_data->death_flag != 1) // this condition is neccessary for the simulation to continue until death
 	{
@@ -77,21 +75,15 @@ void	wait_in_line_sir(t_data **data, t_overseer *overseer, int flag)
 				nuka_cola("Mutex unlock failure\n", data, overseer);
 			usleep(42 * 1000);
 		}
+		i++;
 	}
 }
 
-void	*dinner_for_one(void *data)
+void	died_of_cringe(t_data **data, t_overseer *overseer)
 {
-	t_data	*p_data;
-	void		*butt = NULL;
-
-	p_data = (t_data_list*)data;
-	// printf("Philosopher: %d: attempting to lock mutex\n", p_data->philo_id);
-	// pthread_mutex_lock(&p_data->forks[i]);
-	// printf("Philosopher: %d: locked\n", p_data->philo_id);
-	// usleep(42);
-	// pthread_mutex_unlock(&p_data->forks);
-	// printf("Philosopher: %d: locked\n", p_data->philo_id);
-	struct_printer((p_data));
-	return (butt);
+	if ((*data)->sleep_time > (*data)->death_time)
+	{
+		overseer->death_flag = 1;
+		nuka_cola("DED", data, overseer);
+	}
 }
