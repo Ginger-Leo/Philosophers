@@ -9,11 +9,11 @@ This project main objective is to create threads and, consequentially, to do mul
 ## Usage:
 1. Make the files with "make all";
 2. Run the program with ```./philo``` and entering four/five arguments:
-	2.1. Number of philosophers (max 200);
-	2.2. Time to die;
-	2.3. Time to eat;
-	2.4. Time to sleep;
-	2.5. Number of times each philosopher must eat (optional);
+	- Number of philosophers (max 200);
+	- Time to die;
+	- Time to eat;
+	- Time to sleep;
+	- Number of times each philosopher must eat (optional);
 3. Observe time stamps;
 
 ## Result:
@@ -57,6 +57,9 @@ This project main objective is to create threads and, consequentially, to do mul
 3. Inserted eaten_flag and death_flag in overseer to know when a philosopher is dead; 
 4. Each philosopher now has a pointer to the overseer to be able to know if there is a dead philosopher among them. Inside the main thread there is a while loop that will only cease when the death/eaten flag is switched to one;
 
-04.06.2024
-1. 
+04.06.2024 && 05.06.2024
+1. Forks are being locked as soon as the threads are created;
+2. Forks have to be accessed from the overseer. The mutex is being initialized by the overseer struct, so any attempt of initializing through the data/philosophers struct will end up causing a segmentation fault;
+3. The logic of philosopize() has been altered to allow first locking, and then entering the routine of the philosophers;
+4. So far we have accomplished to make a simple condition for death: when sleep is bigger than time to die;
 ```
