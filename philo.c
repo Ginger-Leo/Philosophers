@@ -6,7 +6,7 @@
 /*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/05 11:18:54 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/05 11:42:55 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,38 +45,34 @@ void	*dinner_for_x(void *data)
 	i = 0;
 	p_data = (t_data **)data;
 	o_data = (*p_data)->overseer;
-	wait_in_line_sir(p_data, o_data, LOCK); //forks are locked
 	while (o_data->eaten_flag != 1 && o_data->death_flag != 1) // this condition is neccessary for the simulation to continue until death
 	{
-		wait_in_line_sir(p_data, o_data, UNLOCK); //forks are unlocked
+		if (wait_in_line_sir(o_data->forks[i], LOCK) == 0) //forks are locked
+			nuka_cola("Mutex lock failure\n", p_data, o_data);
+		if (wait_in_line_sir(o_data->forks[i], UNLOCK) == 0) //forks are unlocked
+			nuka_cola("Mutex unlock failure\n", p_data, o_data);
 		printf("In dinner_for_x\n");
 		died_of_cringe(p_data, o_data);
 	}
 	return (data);
 }
 
-void	wait_in_line_sir(t_data **data, t_overseer *overseer, int flag)
+int	wait_in_line_sir(t_mtx *fork, int flag)
 {
-	int	i;
-
-	i = 0;
-	while (i < overseer->no_of_philosophers)
+	if (flag == LOCK)
 	{
-
-		if (flag == LOCK)
-		{
-			if (pthread_mutex_lock(data[i]->forks[i]) != 0)
-				nuka_cola("Mutex lock failure\n", data, overseer);
-			printf("here\n");
-		}
-		if (flag == UNLOCK)
-		{
-			if (pthread_mutex_unlock(data[i]->forks[i]) != 0)
-				nuka_cola("Mutex unlock failure\n", data, overseer);
-			usleep(42 * 1000);
-		}
-		i++;
+		if (pthread_mutex_lock(fork) != 0)
+			return (0);
+		usleep(42 * 1000);
+		return (1);
 	}
+	if (flag == UNLOCK)
+	{
+		if (pthread_mutex_unlock(fork) != 0)
+			return (0);		
+		return (1);
+	}
+	return (0);
 }
 
 void	died_of_cringe(t_data **data, t_overseer *overseer)
