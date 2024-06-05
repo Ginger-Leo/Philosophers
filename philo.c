@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/05 12:06:35 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/05 15:41:12 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ void	died_of_cringe(t_data **data, t_overseer *overseer)
 	if ((*data)->sleep_time > (*data)->death_time)
 	{
 		overseer->death_flag = 1;
-		nuka_cola("DED", data, overseer);
+		nuka_cola("DED\n", data, overseer);
 	}
 }

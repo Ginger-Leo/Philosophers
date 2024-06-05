@@ -69,8 +69,9 @@ Things to do....
 2. Make sleep timer to start after eating (must run for 'time to sleep').
 3. Make mutex for printer so nothing gets printed after a death of a philo.
 4. Make a printer with standardised messages "philo no.< > is < >" etc...
-```
+5. 
 
+```
 About author.
-Feliepe is a fiecely erotic, peacock introvert. he struggles walking in straight lines due to his tiny feet and terrible sense of direction. If he were an animal, he'd be jellyfish, because thier personalities are so similar.
+Felipe is a fiercely erotic, peacock introvert. he struggles walking in straight lines due to his tiny feet and terrible sense of direction. If he were an animal, he'd be jellyfish, because thier personalities are so similar.
 ```
