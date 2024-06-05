@@ -6,7 +6,7 @@
 /*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/05 11:17:44 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/05 11:18:54 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	wait_in_line_sir(t_data **data, t_overseer *overseer, int flag)
 	i = 0;
 	while (i < overseer->no_of_philosophers)
 	{
-		
+
 		if (flag == LOCK)
 		{
 			if (pthread_mutex_lock(data[i]->forks[i]) != 0)
