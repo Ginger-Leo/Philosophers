@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/04 13:22:59 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:31:54 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_data
 /*					philo.c							*/
 void		philosophize(t_data **data, t_overseer *overseer);
 void		*dinner_for_x(void *data);
-void		wait_in_line_sir(t_data **data, t_overseer *overseer, int flag);
+int			wait_in_line_sir(t_mtx *fork, int flag);
 void		died_of_cringe(t_data **data, t_overseer *overseer);
 
 /*					error_printer.c					*/
