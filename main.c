@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:56 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/04 13:22:45 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/05 09:59:38 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	main(int argc, char **argv)
 		overseer = malloc(sizeof(t_overseer));
 		struct_bzero(data, overseer, argv);
 		struct_filler(data, overseer, argv);
-		// struct_printer(data, overseer, argv);
+		struct_printer(data, overseer, argv);
 		philosophize(data, overseer);
 		// free structs
-		nuka_cola(NULL, data, overseer);
+		// nuka_cola(NULL, data, overseer);
 	}
 	else
 		err_exit(2);

@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/04 13:35:59 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/05 10:09:08 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,6 @@ void	philosophize(t_data **data, t_overseer *overseer)
 	i = 0;
 	while (i < overseer->no_of_philosophers)
 	{
-	;
-		overseer->forks[i] = malloc(sizeof(t_mtx));
-		if (!overseer->forks)
-			err_exit(7);
-		data[i]->forks = overseer->forks;
 		if (pthread_mutex_init(data[i]->forks[i], NULL) != 0)
 			nuka_cola("Mutex init failed\n", data, overseer);
 		if (pthread_create(&data[i]->thread, NULL, &dinner_for_x,
@@ -52,10 +47,10 @@ void	*dinner_for_x(void *data)
 	o_data = (*p_data)->overseer;
 	
 	wait_in_line_sir(p_data, o_data, LOCK); //forks are locked
+	wait_in_line_sir(p_data, o_data, UNLOCK); //forks are unlocked
 	while (o_data->eaten_flag != 1 && o_data->death_flag != 1) // this condition is neccessary for the simulation to continue until death
 	{
-		wait_in_line_sir(p_data, o_data, UNLOCK); //forks are unlocked
-		printf("In dinner_for_x\n");
+		// printf("In dinner_for_x\n");
 		died_of_cringe(p_data, o_data);
 	}
 	return (data);
@@ -66,22 +61,22 @@ void	wait_in_line_sir(t_data **data, t_overseer *overseer, int flag)
 	int	i;
 
 	i = 0;
-	
 	while (i < overseer->no_of_philosophers)
 	{
-		
 		if (flag == LOCK)
 		{
+			// printf("LOCK: philo:%i\nflag:%i\n", data[i]->philo_id, flag);
 			if (pthread_mutex_lock(data[i]->forks[i]) != 0)
 				nuka_cola("Mutex lock failure\n", data, overseer);
-			printf("here\n");
 		}
 		if (flag == UNLOCK)
 		{
+			// printf("UNLOCK: philo:%i\nflag:%i\n", data[i]->philo_id, flag);
 			if (pthread_mutex_unlock(data[i]->forks[i]) != 0)
 				nuka_cola("Mutex unlock failure\n", data, overseer);
 			usleep(42 * 1000);
 		}
+		i++;
 	}
 }
 
