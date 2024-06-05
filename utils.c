@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/05/30 10:51:22 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/04 13:24:07 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,19 @@ void	free_array(void **array)
 		i++;
 	}
 	free(array);
+}
+
+void	nuka_cola(char *str, t_data **data, t_overseer *overseer)
+{
+	int	i;
+
+	i = 0;
+	if (str)
+		ft_putstr_fd(str, 2);
+	while (i < overseer->no_of_philosophers)
+	{
+		pthread_mutex_destroy(data[i]->forks[i]);
+		pthread_mutex_destroy(overseer->forks[i]);
+		i++;
+	}
 }

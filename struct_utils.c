@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/03 11:39:48 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/05 10:10:40 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 {
 	int	i;
 
+	overseer_filler(overseer, argv);
 	i = 0;
 	while (i < ft_atoi(argv[1]))
 	{
@@ -44,8 +45,17 @@ void	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 			data[i]->times_to_eat = ft_atoi(argv[5]);
 		data[i]->start_time = what_time_is_it();
 		data[i]->philo_id = i + 1;
+		data[i]->overseer = overseer;
+		data[i]->forks = overseer->forks;
 		i++;
 	}
+}
+
+void	overseer_filler(t_overseer *overseer, char **argv)
+{
+	int	i;
+
+	i = 0;
 	overseer->no_of_philosophers = ft_atoi(argv[1]);
 	overseer->death_time = ft_atoi(argv[2]);
 	overseer->feed_time = ft_atoi(argv[3]);
@@ -53,7 +63,16 @@ void	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 	if (argv[5])
 		overseer->times_to_eat = ft_atoi(argv[5]);
 	overseer->forks = malloc((overseer->no_of_philosophers + 1) * sizeof(t_mtx *));
+	if (!overseer->forks)
+		exit(7);
 	overseer->start_time = what_time_is_it();
+	while (i < overseer->no_of_philosophers)
+	{
+		overseer->forks[i] = malloc(sizeof(t_mtx));
+		if (!overseer->forks)
+			err_exit(7);
+		i++;
+	}
 }
 
 void	struct_printer(t_data **data, t_overseer *overseer, char **argv)
@@ -67,7 +86,8 @@ void	struct_printer(t_data **data, t_overseer *overseer, char **argv)
 		printf("feed time  : %i\n", data[i]->feed_time);
 		printf("sleep time : %i\n", data[i]->sleep_time);
 		printf("start time : %zu\n", data[i]->start_time);
-		printf("ID         : %i\n\n", data[i]->philo_id);
+		printf("ID         : %i\n", data[i]->philo_id);
+		printf("Fork	   : %p\n\n", data[i]->forks[i]);
 		i++;
 	}
 	printf("\n ======= OVERSEER  ======= \n\n");
@@ -76,5 +96,6 @@ void	struct_printer(t_data **data, t_overseer *overseer, char **argv)
 	printf("feed time  : %i\n", overseer->feed_time);
 	printf("sleep time : %i\n", overseer->sleep_time);
 	printf("start time : %zu\n", overseer->start_time);
+	printf("Fork	   : %p\n", overseer->forks);
 	return ;
 }

@@ -53,4 +53,10 @@ This project main objective is to create threads and, consequentially, to do mul
 
 03.06.2024
 1. Overseer was missing variables. Therefore, in struct_filler() the variables that are assigned after the loop to avoid unnecessary overwritting inside the loop. Assignment takes less processing power than an assignment, therefore we are just taking the variables out of the first philosopher, because there must always be at least ONE philosopher;
+2. Forks now have dynamic memory allocation. This is a more efficient way of the program knowing the exact ammount of forks necessary for each philosophers;
+3. Inserted eaten_flag and death_flag in overseer to know when a philosopher is dead; 
+4. Each philosopher now has a pointer to the overseer to be able to know if there is a dead philosopher among them. Inside the main thread there is a while loop that will only cease when the death/eaten flag is switched to one;
+
+04.06.2024
+1. 
 ```
