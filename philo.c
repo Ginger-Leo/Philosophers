@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/05 10:20:21 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/05 11:13:26 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 // avoid exiting with error code 1, unless error occurs
 // we should lock the threads before creating them
-void	philosophize(t_data_list **data, t_overseer_list *overseer, char **argv)
+void	philosophize(t_data **data, t_overseer *overseer, char **argv)
 {
 	int			i;
 
@@ -82,7 +82,7 @@ void	wait_in_line_sir(t_data **data, t_overseer *overseer, int flag)
 
 void	*dinner_for_one(void *data)
 {
-	t_data_list	*p_data;
+	t_data	*p_data;
 	void		*butt = NULL;
 
 	p_data = (t_data_list*)data;
