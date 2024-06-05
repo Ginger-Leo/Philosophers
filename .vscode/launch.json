@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/lstorey/Documents/Hive5/New_philo",
-      "program": "/Users/lstorey/Documents/Hive5/New_philo/build/Debug/outDebug"
+      "cwd": "/Users/lstorey/Documents/Hive5/Philosophers",
+      "program": "/Users/lstorey/Documents/Hive5/Philosophers/build/Debug/outDebug"
     }
   ]
 }
