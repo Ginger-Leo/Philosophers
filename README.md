@@ -62,6 +62,10 @@ This project main objective is to create threads and, consequentially, to do mul
 2. Forks have to be accessed from the overseer. The mutex is being initialized by the overseer struct, so any attempt of initializing through the data/philosophers struct will end up causing a segmentation fault;
 3. The logic of philosopize() has been altered to allow first locking, and then entering the routine of the philosophers;
 4. So far we have accomplished to make a simple condition for death: when sleep is bigger than time to die;
+
+06.06.2024
+1. Segmentation fault around the forks unlocking;
+2. We are using the philosopher ID instead of a 
 ```
 
 Things to do....

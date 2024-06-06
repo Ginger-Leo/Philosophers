@@ -6,13 +6,13 @@
 #    By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:11:18 by fdessoy-          #+#    #+#              #
-#    Updated: 2024/05/30 10:11:20 by fdessoy-         ###   ########.fr        #
+#    Updated: 2024/06/06 14:13:35 by fdessoy-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	philo
 CC			= 	cc
-FLAGS		= 	-Wall -Werror -Wextra -g
+FLAGS		= 	-Wall -Werror -Wextra -g #-fsanitize=address
 LIBS 		= 	philo.h
 SRC 		=	philo.c\
 				error_printer.c\

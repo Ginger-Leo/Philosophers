@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/05 11:31:54 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:15:37 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,10 @@ typedef struct s_data
 }	t_data;
 /*					philo.c							*/
 void		philosophize(t_data **data, t_overseer *overseer);
+void		init_locks(t_overseer *overseer);
 void		*dinner_for_x(void *data);
 int			wait_in_line_sir(t_mtx *fork, int flag);
-void		died_of_cringe(t_data **data, t_overseer *overseer);
+int			at_deaths_door(t_data **data, t_overseer *overseer);
 
 /*					error_printer.c					*/
 void		err_exit(int i);
@@ -72,7 +73,7 @@ int			count_args(int argc);
 int			ft_atoi(const char *str);
 size_t		what_time_is_it(void);
 void		free_array(void **array);
-void		nuka_cola(char *str, t_data **data, t_overseer *overseer);
+void		nuka_cola(char *str, t_overseer *overseer);
 
 /*					struct_utils.c					*/
 void		struct_filler(t_data **data, t_overseer *overseer, char **argv);

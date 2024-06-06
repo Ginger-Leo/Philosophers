@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:56 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/05 12:07:10 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/06 14:15:53 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ int	main(int argc, char **argv)
 		overseer = malloc(sizeof(t_overseer));
 		struct_bzero(data, overseer, argv);
 		struct_filler(data, overseer, argv);
+		init_locks(overseer);
 		// struct_printer(data, overseer, argv);
 		philosophize(data, overseer);
 		// free structs
-		nuka_cola(NULL, data, overseer);
+		// nuka_cola("nuking at the end", overseer);
 	}
 	else
 		err_exit(2);
