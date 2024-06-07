@@ -72,6 +72,8 @@ This project main objective is to create threads and, consequentially, to do mul
 3. Segfault was indeed located in the unlocking part, as soon as we entered the simulation. The underlying problem was that philo_id was one index number above from what it was supposed to be;
 4. Locking of forks is now happening outside of the threading. This way we know that the beginning of the simulation will be more synchronized;
 5. Leaks are still a problem;
+6. Leaks have been solved: added function free_struct that is individually taking care of freeing both structs with their respective allocations;
+7. Refactoring: a bunch of the code has been refactored to adapt to the norms. Mostly changing return values for some functions so it would come down to the main() and exit with zero at the end. Not quite sure how it will be done later within threads;
 ```
 
 Things to do....
@@ -79,7 +81,8 @@ Things to do....
 2. Make sleep timer to start after eating (must run for 'time to sleep').
 3. Make mutex for printer so nothing gets printed after a death of a philo.
 4. Make a printer with standardised messages "philo no.< > is < >" etc...
-5. Memory management.
+5. Memory management - DONE
+6. Figure out how to lock everything and exit from the threads
 ```
 About author.
 Felipe is a fiercely erotic, peacock introvert. he struggles walking in straight lines due to his tiny feet and terrible sense of direction. If he were an animal, he'd be jellyfish, because thier personalities are so similar.
