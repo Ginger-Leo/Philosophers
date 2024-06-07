@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/07 10:38:34 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:57:12 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	philosophize(t_data **data, t_overseer *overseer)
 	}
 }
 
-void	init_locks(t_overseer *overseer)
+int		init_locks(t_overseer *overseer)
 {
 	int	 i;
 	
@@ -42,16 +42,23 @@ void	init_locks(t_overseer *overseer)
 	while (i < overseer->no_of_philosophers)
 	{
 		if (pthread_mutex_init(overseer->forks[i], NULL) != 0)
+		{
 			nuka_cola("Mutex init failed\n", overseer);
+			return (0);
+		}
 		i++;
 	}
 	i = 0;
 	while (i < overseer->no_of_philosophers)
 	{
-		if (wait_in_line_sir(overseer->forks[i], LOCK) == 0) //forks are locked
+		if (wait_in_line_sir(overseer->forks[i], LOCK) == 0)
+		{
 			nuka_cola("Mutex lock failure\n", overseer);
+			return (0);
+		}
 		i++;
 	}
+	return (1);
 }
 
 void	*dinner_for_x(void *data)
@@ -64,11 +71,8 @@ void	*dinner_for_x(void *data)
 	p_data = (t_data **)data;
 	o_data = (*p_data)->overseer;
 	if (wait_in_line_sir(o_data->forks[(*p_data)->philo_id - 1], UNLOCK) == 0) //forks are unlocked
-	{
-		// printf("philo_id: %i\n", (*p_data)->philo_id);
 		nuka_cola("Mutex unlock failure\n", o_data);
-	}
-	while (o_data->eaten_flag != 1 && o_data->death_flag != 1) // this condition is neccessary for the simulation to continue until death
+	while (o_data->eaten_flag != 1 && o_data->death_flag != 1)
 	{
 		if (at_deaths_door(p_data, o_data) == 0)
 			break ;

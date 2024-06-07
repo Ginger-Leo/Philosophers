@@ -6,7 +6,7 @@
 #    By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:11:18 by fdessoy-          #+#    #+#              #
-#    Updated: 2024/06/07 10:42:32 by fdessoy-         ###   ########.fr        #
+#    Updated: 2024/06/07 14:19:27 by fdessoy-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC			= 	cc
 FLAGS		= 	-Wall -Werror -Wextra -pedantic
 LIBS 		= 	philo.h
 SRC 		=	philo.c\
-				error_printer.c\
+				printer.c\
 				parsing.c\
 				utils.c\
 				struct_utils.c\

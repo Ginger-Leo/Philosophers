@@ -6,13 +6,13 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/07 10:44:40 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:55:47 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	struct_bzero(t_data **data, t_overseer *overseer, char **argv)
+int	struct_bzero(t_data **data, t_overseer *overseer, char **argv)
 {
 	int	i;
 
@@ -21,21 +21,21 @@ void	struct_bzero(t_data **data, t_overseer *overseer, char **argv)
 	{
 		data[i] = malloc(sizeof(t_data));
 		if (!data[i])
-			return ;
+			return (0);
 		memset(overseer, 0, sizeof(t_overseer));
 		memset((*data), 0, sizeof(t_data));
 		i++;
 	}
 	data[i] = NULL;
+	return (1);
 }
 
-// the parsing function is taking care of negatives
-// the ifs are unnecessary
-void	struct_filler(t_data **data, t_overseer *overseer, char **argv)
+int	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 {
 	int	i;
 
-	overseer_filler(overseer, argv);
+	if (overseer_filler(overseer, argv) == 0)
+		return (0);
 	i = 0;
 	while (i < ft_atoi(argv[1]))
 	{
@@ -46,17 +46,20 @@ void	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 		if (argv[5])
 			data[i]->times_to_eat = ft_atoi(argv[5]);
 		data[i]->start_time = what_time_is_it();
+		if (data[i]->start_time < 0)
+			return (0);
 		data[i]->philo_id = i + 1;
 		data[i]->overseer = overseer;
 		data[i]->forks = overseer->forks;
 		i++;
 	}
+	return (1);
 }
 
-void	overseer_filler(t_overseer *overseer, char **argv)
+int	overseer_filler(t_overseer *overseer, char **argv)
 {
 	int	i;
-
+	
 	i = 0;
 	overseer->no_of_philosophers = ft_atoi(argv[1]);
 	overseer->death_time = ft_atoi(argv[2]);
@@ -66,15 +69,16 @@ void	overseer_filler(t_overseer *overseer, char **argv)
 		overseer->times_to_eat = ft_atoi(argv[5]);
 	overseer->forks = malloc((overseer->no_of_philosophers + 1) * sizeof(t_mtx *));
 	if (!overseer->forks)
-		exit(7);
+		return (0);
 	overseer->start_time = what_time_is_it();
 	while (i < overseer->no_of_philosophers)
 	{
 		overseer->forks[i] = malloc(sizeof(t_mtx));
 		if (!overseer->forks)
-			err_exit(7);
+			return (0);
 		i++;
 	}
+	return (1);
 }
 
 void	struct_printer(t_data **data, t_overseer *overseer, char **argv)

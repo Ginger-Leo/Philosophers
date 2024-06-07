@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/07 10:43:16 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/07 15:01:03 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,30 +56,28 @@ typedef struct s_data
 
 /*					philo.c							*/
 void		philosophize(t_data **data, t_overseer *overseer);
-void		init_locks(t_overseer *overseer);
+int			init_locks(t_overseer *overseer);
 void		*dinner_for_x(void *data);
 int			wait_in_line_sir(t_mtx *fork, int flag);
 int			at_deaths_door(t_data **data, t_overseer *overseer);
 
 /*					error_printer.c					*/
-void		err_exit(int i);
 void		ft_putstr_fd(char *str, int fd);
 
 /*					parsing.c						*/
-void		parsing(char **argv);
+int			parsing(char **argv);
 int			ft_isdigit(int c);
-int			count_args(int argc);
 
 /*					utils.c							*/
 int			ft_atoi(const char *str);
 size_t		what_time_is_it(void);
-void		free_array(void **array);
 void		nuka_cola(char *str, t_overseer *overseer);
+void		free_struct(t_data **data, t_overseer *overseer);
 
 /*					struct_utils.c					*/
-void		struct_filler(t_data **data, t_overseer *overseer, char **argv);
-void		struct_bzero(t_data **data, t_overseer *overseer, char **argv);
-void		overseer_filler(t_overseer *overseer, char **argv);
+int			struct_filler(t_data **data, t_overseer *overseer, char **argv);
+int			struct_bzero(t_data **data, t_overseer *overseer, char **argv);
+int			overseer_filler(t_overseer *overseer, char **argv);
 void		struct_printer(t_data **data, t_overseer *overseer, char **argv);
 
 #endif

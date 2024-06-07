@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/06 14:13:01 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/07 14:38:29 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,28 @@ size_t	what_time_is_it(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-void	free_array(void **array)
+void	free_struct(t_data **data, t_overseer *overseer)
 {
 	int	i;
 
 	i = 0;
-	if (array == NULL)
-		return ;
-	while (array[i])
+	while (overseer->forks[i])
 	{
-		free(array[i]);
+		free(overseer->forks[i]);
 		i++;
 	}
-	free(array);
+	free(overseer);
+	free(overseer->forks);
+	i = 0;
+	if (data[i])
+	{
+		while (data[i])
+		{
+			free(data[i]);
+			i++;
+		}
+		free(data);
+	}
 }
 
 void	nuka_cola(char *str, t_overseer *overseer)
