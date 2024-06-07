@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:56 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/06 14:15:53 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:16:26 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ int	main(int argc, char **argv)
 	{
 		parsing(argv);
 		data = malloc(sizeof(t_data) * (ft_atoi(argv[1]) + 1));
+		if (!data)
+			return (0);
 		overseer = malloc(sizeof(t_overseer));
+		if (!overseer)
+			return (0);
 		struct_bzero(data, overseer, argv);
 		struct_filler(data, overseer, argv);
 		init_locks(overseer);

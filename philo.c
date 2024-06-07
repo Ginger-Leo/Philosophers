@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:48:48 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/06 14:25:38 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:38:34 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	init_locks(t_overseer *overseer)
 	i = 0;
 	while (i < overseer->no_of_philosophers)
 	{
-		if (wait_in_line_sir(overseer->forks[i++], LOCK) == 0) //forks are locked
+		if (wait_in_line_sir(overseer->forks[i], LOCK) == 0) //forks are locked
 			nuka_cola("Mutex lock failure\n", overseer);
 		i++;
 	}
@@ -63,9 +63,11 @@ void	*dinner_for_x(void *data)
 	i = 0;
 	p_data = (t_data **)data;
 	o_data = (*p_data)->overseer;
-	printf("philo_id: %i\n", (*p_data)->philo_id);
-	if (wait_in_line_sir(o_data->forks[(*p_data)->philo_id], UNLOCK) == 0) //forks are unlocked
+	if (wait_in_line_sir(o_data->forks[(*p_data)->philo_id - 1], UNLOCK) == 0) //forks are unlocked
+	{
+		// printf("philo_id: %i\n", (*p_data)->philo_id);
 		nuka_cola("Mutex unlock failure\n", o_data);
+	}
 	while (o_data->eaten_flag != 1 && o_data->death_flag != 1) // this condition is neccessary for the simulation to continue until death
 	{
 		if (at_deaths_door(p_data, o_data) == 0)
@@ -82,7 +84,7 @@ int	wait_in_line_sir(t_mtx *fork, int flag)
 	{
 		if (pthread_mutex_lock(fork) != 0)
 			return (0);
-		usleep(42 * 1000);
+		// usleep(42 * 1000);
 		return (1);
 	}
 	else if (flag == UNLOCK)

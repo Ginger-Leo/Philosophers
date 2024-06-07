@@ -65,7 +65,10 @@ This project main objective is to create threads and, consequentially, to do mul
 
 06.06.2024
 1. Segmentation fault around the forks unlocking;
-2. We are using the philosopher ID instead of a 
+
+07.06.2024
+1. Reestructured the code in different ways, but came back to previous architecture (04.06.2024 && 05.06.2024);
+2. Segfault remains in unlocking part;
 ```
 
 Things to do....
@@ -73,7 +76,6 @@ Things to do....
 2. Make sleep timer to start after eating (must run for 'time to sleep').
 3. Make mutex for printer so nothing gets printed after a death of a philo.
 4. Make a printer with standardised messages "philo no.< > is < >" etc...
-5. 
 
 ```
 About author.

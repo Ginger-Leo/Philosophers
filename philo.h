@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/06 14:15:37 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:43:16 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef pthread_mutex_t	t_mtx;
 
 typedef struct s_overseer
 {
-	pthread_t			thread;
+	pthread_t			thread; // wtf is this
 	int					no_of_philosophers;
 	int					death_time;
 	int					feed_time;
@@ -42,7 +42,7 @@ typedef struct s_overseer
 
 typedef struct s_data
 {
-	pthread_t			thread;
+	pthread_t			thread; // wtf is this
 	int					no_of_philosophers;
 	int					death_time;
 	int					feed_time;
@@ -53,6 +53,7 @@ typedef struct s_data
 	t_overseer			*overseer;
 	t_mtx				**forks;
 }	t_data;
+
 /*					philo.c							*/
 void		philosophize(t_data **data, t_overseer *overseer);
 void		init_locks(t_overseer *overseer);

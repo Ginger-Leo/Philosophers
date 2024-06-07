@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/05 10:10:40 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/07 10:44:40 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	struct_bzero(t_data **data, t_overseer *overseer, char **argv)
 	while (i < ft_atoi(argv[1]))
 	{
 		data[i] = malloc(sizeof(t_data));
+		if (!data[i])
+			return ;
 		memset(overseer, 0, sizeof(t_overseer));
 		memset((*data), 0, sizeof(t_data));
 		i++;
@@ -87,7 +89,7 @@ void	struct_printer(t_data **data, t_overseer *overseer, char **argv)
 		printf("sleep time : %i\n", data[i]->sleep_time);
 		printf("start time : %zu\n", data[i]->start_time);
 		printf("ID         : %i\n", data[i]->philo_id);
-		printf("Fork	   : %p\n\n", data[i]->forks[i]);
+		// printf("Fork	   : %p\n\n", data[i]->right_fork);
 		i++;
 	}
 	printf("\n ======= OVERSEER  ======= \n\n");
@@ -96,6 +98,6 @@ void	struct_printer(t_data **data, t_overseer *overseer, char **argv)
 	printf("feed time  : %i\n", overseer->feed_time);
 	printf("sleep time : %i\n", overseer->sleep_time);
 	printf("start time : %zu\n", overseer->start_time);
-	printf("Fork	   : %p\n", overseer->forks);
+	// printf("Fork	   : %p\n", overseer->forks);
 	return ;
 }
