@@ -74,6 +74,10 @@ This project main objective is to create threads and, consequentially, to do mul
 5. Leaks are still a problem;
 6. Leaks have been solved: added function free_struct that is individually taking care of freeing both structs with their respective allocations;
 7. Refactoring: a bunch of the code has been refactored to adapt to the norms. Mostly changing return values for some functions so it would come down to the main() and exit with zero at the end. Not quite sure how it will be done later within threads;
+
+11.06.2024
+1. Microphone() function was created: the general idea of this funcitonality is to only allow one philosopher to speak at given time and not have cross-talking between philosophers;
+2. Death lock has been created: the general idea is to lock all and everything as soon as someone dies. The implementation is still in early stage;
 ```
 
 Things to do....
