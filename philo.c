@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 #include "philo.h"
-// avoid exiting with error code 1, unless error occurs
-// we should lock the threads before creating them
+// NB: exit is not allowed
 void	philosophize(t_data **data, t_overseer *overseer)
 {
 	int			i;
@@ -65,12 +64,10 @@ void	*dinner_for_x(void *data)
 {
 	t_data			**p_data;
 	t_overseer		*o_data;
-	int				i;
 
-	i = 0;
 	p_data = (t_data **)data;
 	o_data = (*p_data)->overseer;
-	if (wait_in_line_sir(o_data->forks[(*p_data)->philo_id - 1], UNLOCK) == 0) //forks are unlocked
+	if (wait_in_line_sir(o_data->forks[(*p_data)->philo_id - 1], UNLOCK) == 0)
 		nuka_cola("Mutex unlock failure\n", o_data);
 	while (o_data->eaten_flag != 1 && o_data->death_flag != 1)
 	{
@@ -82,18 +79,17 @@ void	*dinner_for_x(void *data)
 	return (data);
 }
 
-int	wait_in_line_sir(t_mtx *fork, int flag)
+int	wait_in_line_sir(t_mtx *lock, int flag)
 {
 	if (flag == LOCK)
 	{
-		if (pthread_mutex_lock(fork) != 0)
+		if (pthread_mutex_lock(lock) != 0)
 			return (0);
-		// usleep(42 * 1000);
 		return (1);
 	}
 	else if (flag == UNLOCK)
 	{
-		if (pthread_mutex_unlock(fork) != 0)
+		if (pthread_mutex_unlock(lock) != 0)
 			return (0);		
 		return (1);
 	}
@@ -108,9 +104,22 @@ int	at_deaths_door(t_data **data, t_overseer *overseer)
 	if ((*data)->sleep_time > (*data)->death_time)
 	{
 		overseer->death_flag = 1;
-		if (wait_in_line_sir(overseer->forks[i], LOCK) == 0) //forks are locked
+		if (wait_in_line_sir(overseer->forks[i], LOCK) == 0)
 			nuka_cola("Mutex lock failure\n", overseer);
 		return (0);
+	}
+	return (1);
+}
+
+int	microphone(char *str, t_overseer *overseer)
+{
+	if (str)
+	{
+		if (wait_in_line_sir(overseer->mic_lock, LOCK) == 0)
+			return (0);
+		printf("%s\n", str);
+		if (wait_in_line_sir(overseer->mic_lock, UNLOCK) == 0)
+			return (0);
 	}
 	return (1);
 }

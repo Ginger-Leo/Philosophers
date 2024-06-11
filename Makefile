@@ -11,24 +11,23 @@
 # **************************************************************************** #
 
 NAME		= 	philo
-CC			= 	cc
+CC		= 	cc
 FLAGS		= 	-Wall -Werror -Wextra -pedantic
 LIBS 		= 	philo.h
 SRC 		=	philo.c\
-				printer.c\
-				parsing.c\
-				utils.c\
-				struct_utils.c\
-				main.c\
+			printer.c\
+			parsing.c\
+			utils.c\
+			struct_utils.c\
+			main.c\
 		
 OBJ  		= 	$(SRC:.c=.o) 
 
-$(NAME)		:	$(OBJ) 
-
+$(NAME)		:	$(OBJ)
 				cc $(FLAGS) $(OBJ) -o $(NAME)
 				
 %.o			:	%.c
-				@CC $(FLAGS) -c $< -o $@
+				$(CC) $(FLAGS) -c $< -o $@
 				
 				
 all			:	$(NAME)

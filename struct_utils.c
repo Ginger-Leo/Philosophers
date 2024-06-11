@@ -46,8 +46,6 @@ int	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 		if (argv[5])
 			data[i]->times_to_eat = ft_atoi(argv[5]);
 		data[i]->start_time = what_time_is_it();
-		if (data[i]->start_time < 0)
-			return (0);
 		data[i]->philo_id = i + 1;
 		data[i]->overseer = overseer;
 		data[i]->forks = overseer->forks;
