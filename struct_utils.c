@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/07 14:55:47 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/11 15:06:27 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	overseer_filler(t_overseer *overseer, char **argv)
 	int	i;
 	
 	i = 0;
+
 	overseer->no_of_philosophers = ft_atoi(argv[1]);
 	overseer->death_time = ft_atoi(argv[2]);
 	overseer->feed_time = ft_atoi(argv[3]);

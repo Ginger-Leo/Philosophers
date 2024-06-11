@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/07 14:38:29 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/11 14:54:39 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	free_struct(t_data **data, t_overseer *overseer)
 		i++;
 	}
 	free(overseer);
+	free(overseer->meal_lock);
+	free(overseer->mic_lock);
 	free(overseer->forks);
 	i = 0;
 	if (data[i])
@@ -79,7 +81,8 @@ void	nuka_cola(char *str, t_overseer *overseer)
 		ft_putstr_fd(str, 2);
 	while (i < overseer->no_of_philosophers)
 	{
-		// pthread_mutex_destroy(data[i]->forks[i]);
+		pthread_mutex_destroy(overseer->meal_lock);
+		pthread_mutex_destroy(overseer->mic_lock);
 		pthread_mutex_destroy(overseer->forks[i]);
 		i++;
 	}
