@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/11 14:54:39 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/13 10:13:09 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,15 @@ void	free_struct(t_data **data, t_overseer *overseer)
 	int	i;
 
 	i = 0;
+	free(overseer->meal_lock);
+	free(overseer->mic_lock);
 	while (overseer->forks[i])
 	{
 		free(overseer->forks[i]);
 		i++;
 	}
-	free(overseer);
-	free(overseer->meal_lock);
-	free(overseer->mic_lock);
 	free(overseer->forks);
+	free(overseer);
 	i = 0;
 	if (data[i])
 	{

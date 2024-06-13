@@ -78,6 +78,9 @@ This project main objective is to create threads and, consequentially, to do mul
 11.06.2024
 1. Microphone() function was created: the general idea of this funcitonality is to only allow one philosopher to speak at given time and not have cross-talking between philosophers;
 2. Death lock has been created: the general idea is to lock all and everything as soon as someone dies. The implementation is still in early stage;
+
+13.06.2024
+1. Fixed the segfault. The problem originated from multiple problems: 1. The mutex pointer had to have some memory allocated to it; 2. The order in which memory should've been allocated was there, we were just not following it (before memset and initialization); 3. The allocation should've been for a t_mtx pointer and now a "character";
 ```
 
 Things to do....

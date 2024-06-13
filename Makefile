@@ -6,13 +6,13 @@
 #    By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:11:18 by fdessoy-          #+#    #+#              #
-#    Updated: 2024/06/11 15:11:28 by fdessoy-         ###   ########.fr        #
+#    Updated: 2024/06/13 09:48:12 by fdessoy-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	philo
 CC		= 	cc
-FLAGS		= 	-Wall -Werror -Wextra -pedantic -g
+FLAGS		= 	-Wall -Werror -Wextra -g #-pedantic 
 LIBS 		= 	philo.h
 SRC 		=	philo.c\
 				printer.c\
