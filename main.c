@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:56 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/13 12:23:15 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:01:01 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ int	main(int argc, char **argv)
 			return (0);
 		parsing(argv);
 		if (struct_init(data, overseer, argv) == 0)
-		{
-			// free_struct(data, overseer);
 			return (0);
-		}
 		philosophize(data, overseer);
+		free_struct(data, overseer, BOTH);
+		free(overseer->meal_lock);
+		free(overseer->mic_lock);
+		free(overseer);
 		// free_struct(data, overseer); // we need to have specific frees for each struct
 	}
 	else

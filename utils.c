@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/13 10:13:09 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:00:29 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,29 +46,31 @@ size_t	what_time_is_it(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-void	free_struct(t_data **data, t_overseer *overseer)
+void	free_struct(t_data **data, t_overseer *overseer, int condition)
 {
 	int	i;
 
-	i = 0;
-	free(overseer->meal_lock);
-	free(overseer->mic_lock);
-	while (overseer->forks[i])
+	if (condition == DATA || condition == BOTH)
 	{
-		free(overseer->forks[i]);
-		i++;
-	}
-	free(overseer->forks);
-	free(overseer);
-	i = 0;
-	if (data[i])
-	{
+		i = 0;
 		while (data[i])
 		{
 			free(data[i]);
 			i++;
 		}
 		free(data);
+		data = NULL;
+	}
+	if (condition == OVERSEER || condition == BOTH)
+	{
+		i = 0;
+		while (overseer->forks[i])
+		{
+			free(overseer->forks[i]);
+			i++;
+		}
+		free(overseer->forks);
+		overseer->forks = NULL;
 	}
 }
 

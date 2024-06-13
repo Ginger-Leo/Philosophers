@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/13 12:13:28 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:01:34 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # define MAX_PHILOS 200
 # define LOCK 1
 # define UNLOCK 2
+# define DATA 99
+# define OVERSEER 66
+# define BOTH 69
 # define ERR_TIME "Time collection failed"
 # define ERR_MUTEX "Mutex failure"
 # define ERR_MIC "Output failure"
@@ -83,7 +86,7 @@ int			ft_isdigit(int c);
 int			ft_atoi(const char *str);
 size_t		what_time_is_it(void);
 void		nuka_cola(char *str, t_overseer *overseer);
-void		free_struct(t_data **data, t_overseer *overseer);
+void		free_struct(t_data **data, t_overseer *overseer, int condition);
 
 /*					struct_utils.c					*/
 int			struct_filler(t_data **data, t_overseer *overseer, char **argv);

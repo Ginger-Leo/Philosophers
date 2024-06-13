@@ -81,7 +81,8 @@ This project main objective is to create threads and, consequentially, to do mul
 
 13.06.2024
 1. Fixed the segfault. The problem originated from multiple problems: 1. The mutex pointer had to have some memory allocated to it; 2. The order in which memory should've been allocated was there, we were just not following it (before memset and initialization); 3. The allocation should've been for a t_mtx pointer and now a "character";
-2. Apparently there is an issue with types pthread_mutex_t that they seem to all be pointing to NULL at time of memory allocation, which renders 
+2. Apparently there is an issue with types pthread_mutex_t that they seem to all be pointing to NULL at time of memory allocation, which renders the general logic of the code useless -> ISSUE SOLVED: apparently there was allocation of a pointer instead of t_mtx;
+3. free_struct() has been remanaged. Now it takes a condition that is dictate by macros (DATA, OVERSEER, and BOTH), the usage is pretty straight forward: type DATA to free the arrays in data, type OVERSEER to free the overseer arrays, and both to free arrays from both;
 ```
 
 Things to do....

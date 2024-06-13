@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/13 12:21:42 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/13 13:42:57 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,11 @@ int	overseer_filler(t_overseer *overseer, char **argv)
 	if (argv[5])
 		overseer->times_to_eat = ft_atoi(argv[5]);
 	overseer->forks = malloc((overseer->no_of_philosophers + 1) * sizeof(t_mtx *));
-	overseer->meal_lock = malloc(sizeof(t_mtx *));
-	overseer->mic_lock = malloc(sizeof(t_mtx *));
-	if (!overseer->forks)
+	overseer->meal_lock = malloc(sizeof(t_mtx));
+	overseer->mic_lock = malloc(sizeof(t_mtx));
+	if (!overseer->forks || !overseer->meal_lock || !overseer->mic_lock)
 		return (0);
-	printf("here we are\n");
 	overseer->start_time = what_time_is_it();
-
 	while (i < overseer->no_of_philosophers)
 	{
 		overseer->forks[i] = malloc(sizeof(t_mtx));
