@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/13 10:22:48 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/13 10:28:55 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		free_struct(t_data **data, t_overseer *overseer);
 
 /*					struct_utils.c					*/
 int			struct_filler(t_data **data, t_overseer *overseer, char **argv);
-int			struct_bzero(t_data **data, t_overseer *overseer, char **argv);
+int			struct_init(t_data **data, t_overseer *overseer, char **argv);
 int			overseer_filler(t_overseer *overseer, char **argv);
 void		struct_printer(t_data **data, t_overseer *overseer, char **argv);
 

@@ -6,13 +6,13 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/13 10:24:18 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/13 10:28:34 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	struct_bzero(t_data **data, t_overseer *overseer, char **argv)
+int	struct_init(t_data **data, t_overseer *overseer, char **argv)
 {
 	int	i;
 
@@ -27,6 +27,9 @@ int	struct_bzero(t_data **data, t_overseer *overseer, char **argv)
 		i++;
 	}
 	data[i] = NULL;
+	if (struct_filler(data, overseer, argv) == 0 ||
+	init_locks(overseer) == 0)
+		return (0);
 	return (1);
 }
 
