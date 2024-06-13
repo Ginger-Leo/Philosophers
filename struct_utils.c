@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/13 10:28:34 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/13 12:21:42 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	struct_init(t_data **data, t_overseer *overseer, char **argv)
 	if (struct_filler(data, overseer, argv) == 0 ||
 	init_locks(overseer) == 0)
 		return (0);
+	
 	return (1);
 }
 
@@ -72,8 +73,9 @@ int	overseer_filler(t_overseer *overseer, char **argv)
 	overseer->forks = malloc((overseer->no_of_philosophers + 1) * sizeof(t_mtx *));
 	overseer->meal_lock = malloc(sizeof(t_mtx *));
 	overseer->mic_lock = malloc(sizeof(t_mtx *));
-	if (!overseer->forks || !overseer->meal_lock || overseer->mic_lock)
+	if (!overseer->forks)
 		return (0);
+	printf("here we are\n");
 	overseer->start_time = what_time_is_it();
 
 	while (i < overseer->no_of_philosophers)

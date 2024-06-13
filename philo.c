@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 12:26:25 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/11 15:03:54 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/13 12:15:31 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,3 +52,8 @@ void	*dinner_for_x(void *data)
 		nuka_cola(NULL, o_data);
 	return (data);
 }
+
+// void	eating_routine(t_data **data, t_overseer *overseer)
+// {
+// 	return ;
+// }

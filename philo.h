@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/13 10:28:55 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/13 12:13:28 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int			init_locks(t_overseer *overseer);
 void		*dinner_for_x(void *data);
 int			wait_in_line_sir(t_mtx *lock, int flag);
 int			at_deaths_door(t_data **data, t_overseer *overseer);
-int			microphone(char *str, t_overseer *overseer);
+int			microphone(t_data **data, t_overseer *overseer, char *action);
 
 /*					error_printer.c					*/
 void		ft_putstr_fd(char *str, int fd);
