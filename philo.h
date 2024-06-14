@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/13 14:01:34 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/14 10:57:02 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,16 @@ typedef struct s_data
 
 /*					philo.c							*/
 void		philosophize(t_data **data, t_overseer *overseer);
-int			init_locks(t_overseer *overseer);
 void		*dinner_for_x(void *data);
-int			wait_in_line_sir(t_mtx *lock, int flag);
-int			at_deaths_door(t_data **data, t_overseer *overseer);
+
+
+/*					printer.c						*/
+void		ft_putstr_fd(char *str, int fd);
 int			microphone(t_data **data, t_overseer *overseer, char *action);
 
-/*					error_printer.c					*/
-void		ft_putstr_fd(char *str, int fd);
+/*					routine.c						*/
+int			dying(t_data **data, t_overseer *overseer);
+void		eating(t_data **data, t_overseer *overseer);
 
 /*					parsing.c						*/
 int			parsing(char **argv);
@@ -93,5 +95,9 @@ int			struct_filler(t_data **data, t_overseer *overseer, char **argv);
 int			struct_init(t_data **data, t_overseer *overseer, char **argv);
 int			overseer_filler(t_overseer *overseer, char **argv);
 void		struct_printer(t_data **data, t_overseer *overseer, char **argv);
+
+/*					locks.c							*/
+int			init_locks(t_overseer *overseer);
+int			wait_in_line_sir(t_mtx *lock, int flag);
 
 #endif

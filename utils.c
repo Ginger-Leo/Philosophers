@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/13 14:00:29 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/14 10:57:28 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,21 @@ void	nuka_cola(char *str, t_overseer *overseer)
 		ft_putstr_fd(str, 2);
 	while (i < overseer->no_of_philosophers)
 	{
-		pthread_mutex_destroy(overseer->meal_lock);
-		pthread_mutex_destroy(overseer->mic_lock);
+
 		pthread_mutex_destroy(overseer->forks[i]);
 		i++;
+	}
+	pthread_mutex_destroy(overseer->meal_lock);
+	pthread_mutex_destroy(overseer->mic_lock); // these were in the loop before
+}
+
+void	ft_usleep(size_t milisecs)
+{
+	size_t	start;
+
+	start = what_time_is_it();
+	while ((what_time_is_it() - start) < milisecs)
+	{
+		usleep(500);
 	}
 }
