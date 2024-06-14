@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/14 12:46:04 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/14 14:23:17 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int			microphone(t_data **data, t_overseer *overseer, char *action);
 /*					routine.c						*/
 int			dying(t_data **data, t_overseer *overseer);
 int			eating(t_data **data, t_overseer *overseer);
+int			thinking(t_data **data, t_overseer *overseer);
+int			sleeping(t_data **data, t_overseer *overseer);
 
 /*					parsing.c						*/
 int			parsing(char **argv);
@@ -91,6 +93,7 @@ int			ft_atoi(const char *str);
 size_t		what_time_is_it(void);
 void		nuka_cola(char *str, t_overseer *overseer);
 void		free_struct(t_data **data, t_overseer *overseer, int condition);
+void		ft_usleep(size_t milisecs);
 
 /*					struct_utils.c					*/
 int			struct_filler(t_data **data, t_overseer *overseer, char **argv);

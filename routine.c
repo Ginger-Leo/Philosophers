@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:56:51 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/14 14:12:41 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/14 14:45:59 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,19 @@ int	eating(t_data **data, t_overseer *overseer)
 {
 	if (dying(data, overseer) == 0)
 		return (0);
-	if (pthread_mutex_lock((*data)->forks[overseer->philo_id - 1]) != 0)
-		return (0);
-	if ((*data)->philo_id == MAX_PHILOS)
-		if (pthread_mutex_lock((*data)->forks[0]) != 0)
-			return (0);
+	pthread_mutex_lock(overseer->forks[overseer->philo_id - 1]);
+	if ((*data)->philo_id == overseer->no_of_philosophers)
+		pthread_mutex_lock(overseer->forks[0]);
 	else
-		pthread_mutex_lock((*data)->forks[(*data)->philo_id]);
+		pthread_mutex_lock(overseer->forks[(*data)->philo_id]);
+	microphone(data, overseer, "has taken a fork");
 	microphone(data, overseer, "is eating");
 	ft_usleep((*data)->feed_time);
-	if (pthread_mutex_unlock((*data)->forks[overseer->philo_id - 1]) != 0)
-		return (0);
-	pthread_mutex_unlock((*data)->forks[(*data)->philo_id]);
+	pthread_mutex_unlock(overseer->forks[overseer->philo_id - 1]);
+	if ((*data)->philo_id == overseer->no_of_philosophers)
+		pthread_mutex_unlock(overseer->forks[0]);
+	else
+		pthread_mutex_unlock(overseer->forks[(*data)->philo_id]);
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 12:26:25 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/14 14:09:29 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/14 14:55:28 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	*dinner_for_x(void *data)
 		ft_usleep(42);
 	if (wait_in_line_sir(o_data->forks[(*p_data)->philo_id - 1], UNLOCK) == 0)
 		nuka_cola("Mutex unlock failure\n", o_data);
-	while (dying(p_data, o_data) != 0)
+	while (dying(p_data, o_data) == 1)
 	{
 		if (eating(p_data, o_data) == 0)
 			break ;
