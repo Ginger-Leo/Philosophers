@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/14 10:57:28 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/14 13:54:44 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,5 @@ void	ft_usleep(size_t milisecs)
 
 	start = what_time_is_it();
 	while ((what_time_is_it() - start) < milisecs)
-	{
 		usleep(500);
-	}
 }
