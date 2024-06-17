@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:56 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/13 14:01:01 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/17 11:04:13 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	main(int argc, char **argv)
 		free(overseer->meal_lock);
 		free(overseer->mic_lock);
 		free(overseer);
-		// free_struct(data, overseer); // we need to have specific frees for each struct
 	}
 	else
 		ft_putstr_fd("Wrong number of arguments: must be five\n", 2);

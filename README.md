@@ -86,7 +86,15 @@ This project main objective is to create threads and, consequentially, to do mul
 
 14.06.2024
 1. Struct_bzero() changed name to struct_init();
-2. 
+2. Added full routine to the philosophers: thinking, eating, and sleeping has been added;
+3. Most of the routine is fairly simple, working with a check for the death flag (overseer->death_flag) and the microphone that is locked while in used;
+4. Most of the routine is working, except that after a random amount of meals, the program runs into an infinite loop, which may be a race condition (locked fork trying to be accessed);
+5. Added ft_usleep() that corrects the delays from usleep() by using busy waiting;
+
+17.06.2024
+1. Adding a new conditional function im_gonna_barf() to check the amount of times to eat and change the flag (overseer->eaten_flag) to quit the simulation;
+2. The race condition may be originating from the eating() because the forks are locked while one of the philosophers is trying to access them. Therefore, the solution may be to come up with a function that is going to keep the philosophers waiting for their forks when not available (function name is the_line());
+3.
 ```
 
 Things to do....

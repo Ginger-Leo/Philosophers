@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/14 14:23:17 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/17 11:50:14 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,9 @@ void		struct_printer(t_data **data, t_overseer *overseer);
 /*					locks.c							*/
 int			init_locks(t_overseer *overseer);
 int			wait_in_line_sir(t_mtx *lock, int flag);
+
+/*					routine_utils.c					 */
+int	im_gonna_barf(t_data **data, t_overseer *overseer);
+int	the_line(t_data **data, t_overseer *overseer);
 
 #endif

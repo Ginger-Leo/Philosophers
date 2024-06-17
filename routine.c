@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:56:51 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/17 11:02:14 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/17 12:02:25 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,20 @@ int dying(t_data **data, t_overseer *overseer)
 	int	i;
 
 	i = 0;
-	if ((*data)->sleep_time >= (*data)->death_time)
+	if ((*data)->sleep_time >= (*data)->death_time) // need to add meals eaten
 	{
 		overseer->death_flag = 1;
-		if (wait_in_line_sir(overseer->forks[i], LOCK) == 0)
-			nuka_cola(NULL, overseer);
-		microphone(data, overseer, "has died");
+		if (microphone(data, overseer, "has died") == 0)
+			return (0);
+		while (i < overseer->no_of_philosophers)
+		{
+			if (wait_in_line_sir(overseer->forks[i], LOCK) == 0)
+			{
+				nuka_cola(NULL, overseer);
+				return (0);
+			}
+			i++;
+		}
 		return (0);
 	}
 	return (1);
@@ -30,7 +38,7 @@ int dying(t_data **data, t_overseer *overseer)
 
 int	eating(t_data **data, t_overseer *overseer)
 {
-	if (dying(data, overseer) == 0)
+	if (overseer->death_flag == 1 || overseer->eaten_flag == 1);
 		return (0);
 	pthread_mutex_lock(overseer->forks[overseer->philo_id - 1]);
 	if ((*data)->philo_id == overseer->no_of_philosophers)
@@ -43,9 +51,11 @@ int	eating(t_data **data, t_overseer *overseer)
 		pthread_mutex_lock(overseer->forks[(*data)->philo_id]);
 		microphone(data, overseer, "has taken a fork");
 	}
+	(*data)->times_to_eat--;
 	microphone(data, overseer, "has taken a fork");
 	microphone(data, overseer, "is eating");
 	ft_usleep((*data)->feed_time);
+	(*data)->start_time = what_time_is_it();
 	pthread_mutex_unlock(overseer->forks[overseer->philo_id - 1]);
 	if ((*data)->philo_id == overseer->no_of_philosophers)
 		pthread_mutex_unlock(overseer->forks[0]);
@@ -56,17 +66,19 @@ int	eating(t_data **data, t_overseer *overseer)
 
 int	thinking(t_data **data, t_overseer *overseer)
 {
-	if (dying(data, overseer) == 0)
+	if (overseer->death_flag == 1)
 		return (0);
-	microphone(data, overseer, "is thinking");
+	if (microphone(data, overseer, "is thinking") == 0)
+		return (0);
 	return (1);	
 }
 
 int	sleeping(t_data **data, t_overseer *overseer)
 {
-	if (dying(data, overseer) == 0)
+	if (overseer->death_flag == 1)
 		return (0);
-	microphone(data, overseer, "is sleeping");
+	if (microphone(data, overseer, "is sleeping") == 0)
+		return (0);
 	ft_usleep((*data)->sleep_time);
 	return (1);
 }
