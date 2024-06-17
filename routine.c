@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:56:51 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/17 12:02:25 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/17 13:40:02 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int dying(t_data **data, t_overseer *overseer)
 
 int	eating(t_data **data, t_overseer *overseer)
 {
-	if (overseer->death_flag == 1 || overseer->eaten_flag == 1);
+	if (overseer->death_flag == 1 || overseer->eaten_flag == 1)
 		return (0);
 	pthread_mutex_lock(overseer->forks[overseer->philo_id - 1]);
 	if ((*data)->philo_id == overseer->no_of_philosophers)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 12:26:25 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/17 12:00:43 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/17 13:57:49 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ void	philosophize(t_data **data, t_overseer *overseer)
 	i = 0;
 	while (i < overseer->no_of_philosophers)
 	{
+		
 		if (pthread_create(&data[i]->thread, NULL, &dinner_for_x,
 				&data[i]) != 0)
 			nuka_cola("Thread creation failed\n", overseer);
 		i++;
 	}
+	overseer->start_time = what_time_is_it();
 	i = 0;
 	while (i < overseer->no_of_philosophers)
 	{
@@ -40,13 +42,14 @@ void	*dinner_for_x(void *data)
 
 	p_data = (t_data **)data;
 	o_data = (*p_data)->overseer;
+	
 	if ((*p_data)->no_of_philosophers % 2 == 0)
 		ft_usleep(42);
 	if (wait_in_line_sir(o_data->forks[(*p_data)->philo_id - 1], UNLOCK) == 0)
 		nuka_cola("Mutex unlock failure\n", o_data);
 	while (o_data->death_flag != 1 || o_data->eaten_flag != 1)
 	{
-		if (im_gonna_barf(p_data, o_data) == 0);
+		if (im_gonna_barf(p_data, o_data) == 0)
 			break ;
 		if (dying(p_data, o_data) == 0)
 			break ;

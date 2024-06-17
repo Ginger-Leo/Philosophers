@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+         #
+#    By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:11:18 by fdessoy-          #+#    #+#              #
-#    Updated: 2024/06/17 10:39:35 by fdessoy-         ###   ########.fr        #
+#    Updated: 2024/06/17 13:41:04 by lstorey          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	philo
 CC		= 		cc
-FLAGS		= 	-Wall -Werror -Wextra -g #-pedantic 
+FLAGS		= 	-Wall -Werror -Wextra -g -fsanitize=thread #-pedantic 
 LIBS 		= 	philo.h
 SRC 		=	philo.c\
 				printer.c\
@@ -21,7 +21,8 @@ SRC 		=	philo.c\
 				struct_utils.c\
 				main.c\
 				locks.c\
-				routine.c
+				routine.c\
+				routine_utils.c
 		
 OBJ  		= 	$(SRC:.c=.o) 
 

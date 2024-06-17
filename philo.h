@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/17 11:50:14 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/17 13:37:36 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int			init_locks(t_overseer *overseer);
 int			wait_in_line_sir(t_mtx *lock, int flag);
 
 /*					routine_utils.c					 */
-int	im_gonna_barf(t_data **data, t_overseer *overseer);
-int	the_line(t_data **data, t_overseer *overseer);
+int			im_gonna_barf(t_data **data, t_overseer *overseer);
+int			the_line(t_data **data, t_overseer *overseer);
 
 #endif
