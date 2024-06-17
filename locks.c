@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:57:28 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/13 13:39:13 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/17 10:58:39 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int		init_locks(t_overseer *overseer)
 	}
 	i = 0;
 	while (i < overseer->no_of_philosophers)
-	{
+	{	
 		if (wait_in_line_sir(overseer->forks[i], LOCK) == 0)
-			nuka_cola("Mutex lock failure\n", overseer);
+		 	nuka_cola("Mutex lock failure\n", overseer);
 		i++;
 	}
 	return (1);

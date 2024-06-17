@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:56:51 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/14 14:45:59 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/17 11:02:14 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,15 @@ int	eating(t_data **data, t_overseer *overseer)
 		return (0);
 	pthread_mutex_lock(overseer->forks[overseer->philo_id - 1]);
 	if ((*data)->philo_id == overseer->no_of_philosophers)
+	{
 		pthread_mutex_lock(overseer->forks[0]);
+		microphone(data, overseer, "has taken a fork");
+	}
 	else
+	{
 		pthread_mutex_lock(overseer->forks[(*data)->philo_id]);
+		microphone(data, overseer, "has taken a fork");
+	}
 	microphone(data, overseer, "has taken a fork");
 	microphone(data, overseer, "is eating");
 	ft_usleep((*data)->feed_time);
