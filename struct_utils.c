@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/14 12:21:25 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/17 12:48:52 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ void	struct_printer(t_data **data, t_overseer *overseer)
 		// printf("feed time  : %i\n", data[i]->feed_time);
 		// printf("sleep time : %i\n", data[i]->sleep_time);
 		// printf("start time : %zu\n", data[i]->start_time);
-		printf("ID         : %i\n", data[i]->philo_id);
-		printf("Fork	   : %p\n\n", data[i]->forks[i]);
+		printf("ID            : %i\n", data[i]->philo_id);
+		printf("Fork	      : %p\n\n", data[i]->forks[i]);
 		i++;
 	}
 	// printf("\n ======= OVERSEER  ======= \n\n");
