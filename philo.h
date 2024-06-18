@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/18 09:09:31 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/18 10:19:06 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void		*dinner_for_x(void *data);
 /*					printer.c						*/
 void		ft_putstr_fd(char *str, int fd);
 int			microphone(t_data **data, t_overseer *overseer, char *action);
+int			greasy_microphone(t_data **data, t_overseer *overseer, char *action);
 
 /*					routine.c						*/
 int			dying(t_data **data, t_overseer *overseer);
@@ -106,7 +107,7 @@ int			init_locks(t_overseer *overseer);
 int			wait_in_line_sir(t_mtx *lock, int flag);
 
 /*					routine_utils.c					 */
-int			im_gonna_barf(t_data **data, t_overseer *overseer);
+int			im_gonna_barf(t_overseer *overseer, int meal);
 int			the_line(t_data **data, t_overseer *overseer);
 
 #endif
