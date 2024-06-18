@@ -6,13 +6,13 @@
 #    By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:11:18 by fdessoy-          #+#    #+#              #
-#    Updated: 2024/06/18 09:10:56 by fdessoy-         ###   ########.fr        #
+#    Updated: 2024/06/18 16:24:32 by fdessoy-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	philo
 CC			= 	cc
-FLAGS		= 	-Wall -Werror -Wextra -g -pedantic 
+FLAGS		= 	-Wall -Werror -Wextra -g #-pedantic 
 LIBS 		= 	philo.h
 SRC 		=	philo.c\
 				printer.c\
@@ -35,7 +35,7 @@ $(NAME)		:	$(OBJ)
 				
 all			:	$(NAME)
 
-#san			: DOESNT WORK IN LLINUX
+#san			: DOESNT WORK IN LINUX
 #				$(CC) $(FLAGS) -g -fsanitize=address -static-libasan $(SRC) -o san 
 
 clean		:	

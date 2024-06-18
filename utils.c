@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/14 13:54:44 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:39:01 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,10 @@ int	ft_atoi(const char *str)
 
 size_t	what_time_is_it(void)
 {
-	struct timeval	time;
+	struct timeval	tv;
 
-	if(gettimeofday(&time, NULL) == -1)
-		ft_putstr_fd(ERR_TIME, 2);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * (unsigned long)1000) + tv.tv_usec / 1000);
 }
 
 void	free_struct(t_data **data, t_overseer *overseer, int condition)
@@ -96,6 +95,6 @@ void	ft_usleep(size_t milisecs)
 	size_t	start;
 
 	start = what_time_is_it();
-	while ((what_time_is_it() - start) < milisecs)
+	if (what_time_is_it() - start < milisecs)
 		usleep(500);
 }

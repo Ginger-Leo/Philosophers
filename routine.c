@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:56:51 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/18 13:30:57 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/18 16:37:20 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int dying(t_data **data, t_overseer *overseer)
 			return (0);
 		while (i < overseer->no_of_philosophers)
 		{
-			if (wait_in_line_sir(overseer->forks[i], LOCK) == 0)
+			if (!pthread_mutex_lock(overseer->forks[i]))
 			{
 				nuka_cola(NULL, overseer);
 				return (0);
@@ -38,7 +38,7 @@ int dying(t_data **data, t_overseer *overseer)
 
 int	eating(t_data **data, t_overseer *overseer)
 {
-	if (overseer->death_flag == 1 || overseer->eaten_flag == 1)
+	if (overseer->death_flag == 1)
 		return (0);
 	pthread_mutex_lock(overseer->forks[overseer->philo_id - 1]);
 	microphone(data, overseer, "has taken a fork");
@@ -68,16 +68,16 @@ int	eating(t_data **data, t_overseer *overseer)
 
 int	thinking(t_data **data, t_overseer *overseer)
 {
-	if (overseer->death_flag == 1 || overseer->eaten_flag == 1)
+	if (overseer->death_flag == 1)
 		return (0);
 	if (microphone(data, overseer, "is thinking") == 0)
 		return (0);
-	return (1);	
+	return (1);
 }
 
 int	sleeping(t_data **data, t_overseer *overseer)
 {
-	if (overseer->death_flag == 1 || overseer->eaten_flag == 1)
+	if (overseer->death_flag == 1)
 		return (0);
 	if (microphone(data, overseer, "is sleeping") == 0)
 		return (0);
