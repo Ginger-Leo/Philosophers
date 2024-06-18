@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/18 10:19:06 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/18 13:01:21 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_overseer
 	int					sleep_time;
 	int					times_to_eat;
 	int					death_flag;
-	int					eaten_flag;
+	int					eaten_flag; // shoud this be in the philos not OS
 	int					philo_id;
 	size_t				start_time;
 	t_mtx				*meal_lock;
