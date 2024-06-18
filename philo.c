@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 12:26:25 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/18 13:09:20 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/18 13:26:37 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,13 @@ void	*dinner_for_x(void *data)
 	{
 		if (dying(p_data, o_data) == 0)
 			break ;
-		printf("this is philo %i\n", (*p_data)->philo_id);
 		if (eating(p_data, o_data) == 0)
 			break ;
-		printf("this is philo %i\n", (*p_data)->philo_id);
 		if (sleeping(p_data, o_data) == 0)
 			break ;
 		if (thinking(p_data, o_data) == 0)
 			break ;
 	}
-	printf("broke out of containment %i\n", (*p_data)->philo_id);
 	nuka_cola(NULL, o_data);
 	return (data);
 }

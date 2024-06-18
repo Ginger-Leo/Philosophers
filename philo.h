@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/18 13:09:38 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/18 13:15:14 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int			init_locks(t_overseer *overseer);
 int			wait_in_line_sir(t_mtx *lock, int flag);
 
 /*					routine_utils.c					 */
-int			im_gonna_barf(t_data **data, t_overseer *overseer);
+int			im_gonna_barf(t_overseer *overseer, int meal);
 int			the_line(t_data **data, t_overseer *overseer);
 
 #endif
