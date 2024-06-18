@@ -94,7 +94,7 @@ This project main objective is to create threads and, consequentially, to do mul
 17.06.2024
 1. Adding a new conditional function im_gonna_barf() to check the amount of times to eat and change the flag (overseer->eaten_flag) to quit the simulation;
 2. The race condition may be originating from the eating() because the forks are locked while one of the philosophers is trying to access them. Therefore, the solution may be to come up with a function that is going to keep the philosophers waiting for their forks when not available (function name is the_line());
-3.
+3. After using fsanitize=thread we were able to check which function was presenting race conditions. The eating() part of the routine has the a double lock in the microphone(), which already has a lock in itself and does not need an extraneous lock, otherwhise other philosophers will have problems trying to access it;
 ```
 
 Things to do....

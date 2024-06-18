@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:56:51 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/17 13:40:02 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/18 10:00:04 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ int	eating(t_data **data, t_overseer *overseer)
 		pthread_mutex_lock(overseer->forks[(*data)->philo_id]);
 		microphone(data, overseer, "has taken a fork");
 	}
-	(*data)->times_to_eat--;
+	if (im_gonna_barf(overseer, (*data)->times_to_eat--) == 0)
+		return (0);
 	microphone(data, overseer, "has taken a fork");
 	microphone(data, overseer, "is eating");
 	ft_usleep((*data)->feed_time);
@@ -66,7 +67,7 @@ int	eating(t_data **data, t_overseer *overseer)
 
 int	thinking(t_data **data, t_overseer *overseer)
 {
-	if (overseer->death_flag == 1)
+	if (overseer->death_flag == 1 || overseer->eaten_flag == 1)
 		return (0);
 	if (microphone(data, overseer, "is thinking") == 0)
 		return (0);
@@ -75,7 +76,7 @@ int	thinking(t_data **data, t_overseer *overseer)
 
 int	sleeping(t_data **data, t_overseer *overseer)
 {
-	if (overseer->death_flag == 1)
+	if (overseer->death_flag == 1 || overseer->eaten_flag == 1)
 		return (0);
 	if (microphone(data, overseer, "is sleeping") == 0)
 		return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/17 13:37:36 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/18 09:09:31 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void		ft_usleep(size_t milisecs);
 int			struct_filler(t_data **data, t_overseer *overseer, char **argv);
 int			struct_init(t_data **data, t_overseer *overseer, char **argv);
 int			overseer_filler(t_overseer *overseer, char **argv);
-void		struct_printer(t_data **data, t_overseer *overseer);
+// void		struct_printer(t_data **data, t_overseer *overseer); // remove
 
 /*					locks.c							*/
 int			init_locks(t_overseer *overseer);

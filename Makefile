@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+         #
+#    By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:11:18 by fdessoy-          #+#    #+#              #
-#    Updated: 2024/06/17 13:41:04 by lstorey          ###   ########.fr        #
+#    Updated: 2024/06/18 09:10:56 by fdessoy-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= 	philo
-CC		= 		cc
-FLAGS		= 	-Wall -Werror -Wextra -g -fsanitize=thread #-pedantic 
+CC			= 	cc
+FLAGS		= 	-Wall -Werror -Wextra -g -pedantic 
 LIBS 		= 	philo.h
 SRC 		=	philo.c\
 				printer.c\
@@ -49,4 +49,4 @@ fclean		:	clean
 
 re			:	fclean all
 
-.PHONY 		: all clean fclean re 
+.PHONY 		: 	all clean fclean re 

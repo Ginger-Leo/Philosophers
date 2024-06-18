@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   routine_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 11:47:54 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/17 13:38:13 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/18 09:15:38 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	im_gonna_barf(t_data **data, t_overseer *overseer)
+int	im_gonna_barf(t_overseer *overseer, int meal)
 {
-	if ((*data)->times_to_eat == 0)
+	if (meal == 0)
 	{
 		overseer->eaten_flag = 1;
 		return (0);

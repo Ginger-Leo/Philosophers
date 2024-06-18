@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/17 13:46:28 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/18 09:09:12 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,27 +86,27 @@ int	overseer_filler(t_overseer *overseer, char **argv)
 	return (1);
 }
 
-void	struct_printer(t_data **data, t_overseer *overseer)
-{
-	int i = 0;
+// void	struct_printer(t_data **data, t_overseer *overseer)
+// {
+// 	int i = 0;
 
-	while (i < overseer->no_of_philosophers)
-	{
-		printf("\nPhilosophers: %i\n", data[i]->no_of_philosophers);
-		// printf("death time : %i\n", data[i]->death_time);
-		// printf("feed time  : %i\n", data[i]->feed_time);
-		// printf("sleep time : %i\n", data[i]->sleep_time);
-		// printf("start time : %zu\n", data[i]->start_time);
-		printf("ID            : %i\n", data[i]->philo_id);
-		printf("Fork	      : %p\n\n", data[i]->forks[i]);
-		i++;
-	}
-	// printf("\n ======= OVERSEER  ======= \n\n");
-	// printf("Philosophers: %i\n", overseer->no_of_philosophers);
-	// printf("death time : %i\n", overseer->death_time);
-	// printf("feed time  : %i\n", overseer->feed_time);
-	// printf("sleep time : %i\n", overseer->sleep_time);
-	// printf("start time : %zu\n", overseer->start_time);
-	// printf("Fork	   : %p\n", overseer->forks);
-	return ;
-}
+// 	while (i < overseer->no_of_philosophers)
+// 	{
+// 		printf("\nPhilosophers: %i\n", data[i]->no_of_philosophers);
+// 		printf("death time : %i\n", data[i]->death_time);
+// 		printf("feed time  : %i\n", data[i]->feed_time);
+// 		printf("sleep time : %i\n", data[i]->sleep_time);
+// 		printf("start time : %zu\n", data[i]->start_time);
+// 		printf("ID            : %i\n", data[i]->philo_id);
+// 		printf("Fork	      : %p\n\n", data[i]->forks[i]);
+// 		i++;
+// 	}
+// 	printf("\n ======= OVERSEER  ======= \n\n");
+// 	printf("Philosophers: %i\n", overseer->no_of_philosophers);
+// 	printf("death time : %i\n", overseer->death_time);
+// 	printf("feed time  : %i\n", overseer->feed_time);
+// 	printf("sleep time : %i\n", overseer->sleep_time);
+// 	printf("start time : %zu\n", overseer->start_time);
+// 	printf("Fork	   : %p\n", overseer->forks);
+// 	return ;
+// }
