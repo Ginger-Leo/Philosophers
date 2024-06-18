@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:56:51 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/18 10:43:57 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/18 11:25:02 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int dying(t_data **data, t_overseer *overseer)
 	if ((*data)->sleep_time >= (*data)->death_time) // need to add meals eaten
 	{
 		overseer->death_flag = 1;
-		if (microphone(data, overseer, "has died") == 0)
+		if (microphone(data, overseer, "died") == 0)
 			return (0);
 		while (i < overseer->no_of_philosophers)
 		{
@@ -38,41 +38,36 @@ int dying(t_data **data, t_overseer *overseer)
 
 int	eating(t_data **data, t_overseer *overseer)
 {
-	if (overseer->death_flag == 1 || overseer->eaten_flag == 1 ||
-	wait_in_line_sir(overseer->forks[overseer->philo_id - 1], LOCK) == 0 ||
-	microphone(data, overseer, "has taken a fork") == 0)
+	if (overseer->death_flag == 1 || overseer->eaten_flag == 1)
 		return (0);
+	pthread_mutex_lock(overseer->forks[overseer->philo_id - 1]);
+	microphone(data, overseer, "has taken a fork");
 	if ((*data)->philo_id == overseer->no_of_philosophers)
 	{
-		if (wait_in_line_sir(overseer->forks[0], LOCK) == 0 ||
-		microphone(data, overseer, "has taken a fork") == 0)
-			return (0);
+		pthread_mutex_lock(overseer->forks[0]);
+		microphone(data, overseer, "has taken a fork");
 	}
 	else
 	{
-		if (wait_in_line_sir(overseer->forks[(*data)->philo_id], LOCK) == 0 ||
-		microphone(data, overseer, "has taken a fork") == 0)
-			return (0);
+		pthread_mutex_lock(overseer->forks[(*data)->philo_id]);
+		microphone(data, overseer, "has taken a fork");
 	}
-	if (microphone(data, overseer, "is eating") == 0)
-		return (0);
+	microphone(data, overseer, "is eating");
 	(*data)->start_time = what_time_is_it();
-	if (wait_in_line_sir(overseer->meal_lock, LOCK) == 0 ||
-	im_gonna_barf(overseer, (*data)->times_to_eat--) == 0 ||
-	wait_in_line_sir(overseer->meal_lock, UNLOCK) == 0)
+	if (im_gonna_barf(overseer, (*data)->times_to_eat--) == 0)
 		return (0);
 	ft_usleep((*data)->feed_time);
-	if (wait_in_line_sir(overseer->forks[overseer->philo_id - 1], UNLOCK) == 0)
-		return (0);
+	pthread_mutex_unlock(overseer->forks[overseer->philo_id - 1]);
+	microphone(data, overseer, "fork dropped");
 	if ((*data)->philo_id == overseer->no_of_philosophers)
 	{
-		if (wait_in_line_sir(overseer->forks[0], UNLOCK) == 0)
-			return (0);
+		pthread_mutex_unlock(overseer->forks[0]);
+		microphone(data, overseer, "other fork dropped");
 	}
 	else
 	{
-		if (wait_in_line_sir(overseer->forks[(*data)->philo_id], UNLOCK) == 0)
-			return (0);
+		pthread_mutex_unlock(overseer->forks[(*data)->philo_id]);
+		microphone(data, overseer, "other fork dropped");
 	}
 	return (1);
 }
