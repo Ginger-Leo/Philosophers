@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/18 15:46:52 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:28:23 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_data t_data;
 
 typedef struct s_overseer
 {
-	pthread_t			thread;
+	pthread_t			o_thread;
 	int					no_of_philosophers;
 	int					death_time;
 	int					feed_time;
@@ -48,25 +48,20 @@ typedef struct s_overseer
 	int					times_to_eat;
 	int					death_flag;
 	int					eaten_flag; // shoud this be in the philos not OS
-	int					philo_id;
 	size_t				start_time;
 	t_mtx				*meal_lock;
 	t_mtx				*mic_lock;
-	t_mtx				**forks;
 }	t_overseer;
 
 typedef struct s_data
 {
-	pthread_t			thread;
-	int					no_of_philosophers;
-	int					death_time;
-	int					feed_time;
-	int					sleep_time;
-	int					times_to_eat;
+	pthread_t			p_thread;
+	int					times_eaten;
 	size_t				start_time;
 	int					philo_id;
 	t_overseer			*overseer;
-	t_mtx				**forks;
+	t_mtx				*right_fork;
+	t_mtx				*left_fork;
 }	t_data;
 
 /*					philo.c							*/
@@ -76,13 +71,13 @@ void		*dinner_for_x(void *data);
 
 /*					printer.c						*/
 void		ft_putstr_fd(char *str, int fd);
-int			microphone(t_data **data, t_overseer *overseer, char *action);
+int			microphone(t_data *data, t_overseer *overseer, char *action);
 
 /*					routine.c						*/
-int			dying(t_data **data, t_overseer *overseer);
-int			eating(t_data **data, t_overseer *overseer);
-int			thinking(t_data **data, t_overseer *overseer);
-int			sleeping(t_data **data, t_overseer *overseer);
+int			dying(t_data *data, t_overseer *overseer);
+int			eating(t_data *data, t_overseer *overseer);
+int			thinking(t_data *data, t_overseer *overseer);
+int			sleeping(t_data *data, t_overseer *overseer);
 
 /*					parsing.c						*/
 int			parsing(char **argv);
@@ -91,7 +86,7 @@ int			ft_isdigit(int c);
 /*					utils.c							*/
 int			ft_atoi(const char *str);
 size_t		what_time_is_it(void);
-void		nuka_cola(char *str, t_overseer *overseer);
+void		nuka_cola(char *str, t_overseer *overseer, t_data *data);
 void		free_struct(t_data **data, t_overseer *overseer, int condition);
 void		ft_usleep(size_t milisecs);
 
@@ -102,7 +97,7 @@ int			overseer_filler(t_overseer *overseer, char **argv);
 // void		struct_printer(t_data **data, t_overseer *overseer); // remove
 
 /*					locks.c							*/
-int			init_locks(t_overseer *overseer);
+int			init_locks(t_overseer *overseer, t_data **data);
 int			wait_in_line_sir(t_mtx *lock, int flag);
 
 /*					routine_utils.c					 */

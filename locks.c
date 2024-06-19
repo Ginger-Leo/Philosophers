@@ -3,30 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   locks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:57:28 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/18 15:21:50 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:52:00 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int		init_locks(t_overseer *overseer)
+int		init_locks(t_overseer *overseer, t_data **data)
 {
-	int	 i;
-	
-	i = 0;
 	if (pthread_mutex_init(overseer->mic_lock, NULL) != 0)
-		nuka_cola(ERR_MUTEX, overseer);
+		nuka_cola(ERR_MUTEX, overseer, *data);
 	if (pthread_mutex_init(overseer->meal_lock, NULL) != 0)
-		nuka_cola(ERR_MUTEX, overseer);
-	while (i < overseer->no_of_philosophers)
-	{
-		if (pthread_mutex_init(overseer->forks[i], NULL) != 0)
-			nuka_cola(ERR_MUTEX, overseer);
-		i++;
-	}
+		nuka_cola(ERR_MUTEX, overseer, *data);
 	return (1);
 }
 

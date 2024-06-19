@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:56 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/17 11:04:13 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:28:16 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,6 @@ int	main(int argc, char **argv)
 		free(overseer);
 	}
 	else
-		ft_putstr_fd("Wrong number of arguments: must be five\n", 2);
+		ft_putstr_fd("Wrong number of arguments: must be four of five.\n", 2);
 	return (0);
 }
