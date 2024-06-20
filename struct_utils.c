@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/19 16:15:21 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/20 09:35:27 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 	while (i < ft_atoi(argv[1]))
 	{
 		data[i]->times_eaten = 0;
-		// data[i]->start_time = what_time_is_it();
 		data[i]->philo_id = i + 1;
 		data[i]->overseer = overseer;
 		data[i]->right_fork = malloc(sizeof(t_mtx));
