@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/20 11:25:32 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:26:16 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,12 @@ int	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 	i = 0;
 	while (i < ft_atoi(argv[1]))
 	{
-		data[i]->times_eaten = 0; // is this neccessary? we have memset in place
+		data[i]->times_eaten = 0;
 		data[i]->philo_id = i + 1;
 		data[i]->overseer = overseer;
 		data[i]->right_fork = malloc(sizeof(t_mtx));
 		if (!data[i]->right_fork)
 			return (0);
-		data[i]->left_fork = malloc(sizeof(t_mtx));
-		if (!data[i]->left_fork)
-			return (0);
-		pthread_mutex_init(data[i]->left_fork, NULL);
 		pthread_mutex_init(data[i]->right_fork, NULL);
 		i++;
 	}
@@ -119,3 +115,7 @@ int	overseer_filler(t_overseer *overseer, char **argv)
 // 	printf("Fork	   : %p\n", overseer->forks);
 // 	return ;
 // }
+		// data[i]->left_fork = malloc(sizeof(t_mtx)); // might all be unnecessary
+		// if (!data[i]->left_fork)
+		// 	return (0);
+		// pthread_mutex_init(data[i]->left_fork, NULL);

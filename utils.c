@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/19 14:25:31 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/20 13:29:20 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,33 +46,19 @@ size_t	what_time_is_it(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-void	free_struct(t_data **data, t_overseer *overseer, int condition)
+void	free_struct(t_data **data)
 {
 	int	i;
-	
-	if (condition == DATA || condition == BOTH)
+
+	i = 0;
+	while (data[i])
 	{
-		i = 0;
-		while (data[i])
-		{
-			free(data[i]);
-			i++;
-		}
-		free(data);
-		data = NULL;
+		free(data[i]);
+		free(data[i]->right_fork);
+		i++;
 	}
-	if (condition == OVERSEER || condition == BOTH)
-	{
-		printf("%i\n", overseer->no_of_philosophers);
-		// i = 0;
-		// while (overseer->forks[i])
-		// {
-		// 	free(overseer->forks[i]);
-		// 	i++;
-		// }
-		// free(overseer->forks);
-		// overseer->forks = NULL;
-	}
+	free(data);
+	data = NULL;
 }
 
 void	nuka_cola(char *str, t_overseer *overseer, t_data *data)
@@ -88,7 +74,7 @@ void	nuka_cola(char *str, t_overseer *overseer, t_data *data)
 		i++;
 	}
 	pthread_mutex_destroy(overseer->meal_lock);
-	pthread_mutex_destroy(overseer->mic_lock); // these were in the loop before
+	pthread_mutex_destroy(overseer->mic_lock);
 }
 
 void	ft_usleep(size_t milisecs)
