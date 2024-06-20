@@ -6,7 +6,7 @@
 /*   By: lstorey <lstorey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/20 15:59:23 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/20 17:22:41 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ int	overseer_filler(t_overseer *overseer, char **argv)
 		overseer->times_to_eat = ft_atoi(argv[5]);
 	if (!argv[5])
 		overseer->times_to_eat = INT_MAX;
-	overseer->meal_lock = malloc(sizeof(t_mtx));
-	if (!overseer->meal_lock)
-		return (0);
+	// overseer->meal_lock = malloc(sizeof(t_mtx));
+	// if (!overseer->meal_lock)
+	// 	return (0);
 	overseer->mic_lock = malloc(sizeof(t_mtx));
 	if (!overseer->mic_lock)
 		return (0);
@@ -100,8 +100,8 @@ int		init_locks(t_overseer *overseer, t_data **data)
 {
 	if (pthread_mutex_init(overseer->mic_lock, NULL) != 0)
 		nuka_cola(ERR_MUTEX, overseer, *data);
-	if (pthread_mutex_init(overseer->meal_lock, NULL) != 0)
-		nuka_cola(ERR_MUTEX, overseer, *data);
+	// if (pthread_mutex_init(overseer->meal_lock, NULL) != 0)
+	// 	nuka_cola(ERR_MUTEX, overseer, *data);
 	if (pthread_mutex_init(overseer->death_lock, NULL) != 0)
 		nuka_cola(ERR_MUTEX, overseer, *data);
 	return (1);

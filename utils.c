@@ -6,7 +6,7 @@
 /*   By: lstorey <lstorey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/20 16:46:05 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/20 17:23:31 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	nuka_cola(char *str, t_overseer *overseer, t_data *data)
 		pthread_mutex_destroy(data-> right_fork);
 		i++;
 	}
-	pthread_mutex_destroy(overseer->meal_lock);
+	// pthread_mutex_destroy(overseer->meal_lock);
 	pthread_mutex_destroy(overseer->mic_lock);
 	pthread_mutex_destroy(overseer->death_lock);
 }
