@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/20 09:35:27 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/20 11:25:32 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,30 @@ int	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 	i = 0;
 	while (i < ft_atoi(argv[1]))
 	{
-		data[i]->times_eaten = 0;
+		data[i]->times_eaten = 0; // is this neccessary? we have memset in place
 		data[i]->philo_id = i + 1;
 		data[i]->overseer = overseer;
 		data[i]->right_fork = malloc(sizeof(t_mtx));
-		if ((data[i]->right_fork) == NULL)
+		if (!data[i]->right_fork)
 			return (0);
+		data[i]->left_fork = malloc(sizeof(t_mtx));
+		if (!data[i]->left_fork)
+			return (0);
+		pthread_mutex_init(data[i]->left_fork, NULL);
 		pthread_mutex_init(data[i]->right_fork, NULL);
 		i++;
 	}
+	data[i] = NULL;
+	fork_me(data, overseer);
+	return (1);
+}
+
+int	fork_me(t_data **data, t_overseer *overseer)
+{
+	int	i;
+
 	i = 0;
-	while (i < ft_atoi(argv[1]))
+	while (i < overseer->no_of_philosophers)
 	{
 		if (overseer->no_of_philosophers == 1)
 			data[i]->left_fork = NULL;
@@ -62,7 +75,6 @@ int	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 			data[i]->left_fork = data[i - 1]->right_fork;
 		i++;
 	}
-	
 	return (1);
 }
 
@@ -75,8 +87,10 @@ int	overseer_filler(t_overseer *overseer, char **argv)
 	if (argv[5])
 		overseer->times_to_eat = ft_atoi(argv[5]);
 	overseer->meal_lock = malloc(sizeof(t_mtx));
+	if (!overseer->meal_lock)
+		return (0);
 	overseer->mic_lock = malloc(sizeof(t_mtx));
-	if (!overseer->meal_lock || !overseer->mic_lock)
+	if (!overseer->mic_lock)
 		return (0);
 	return (1);
 }

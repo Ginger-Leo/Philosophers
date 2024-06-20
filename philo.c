@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 12:26:25 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/20 09:33:54 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/20 11:35:42 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,10 @@ void	*dinner_for_x(void *data)
 			break ;
 		if (dying(p_data[i], o_data) == 0)
 			break ;
-		if (i == o_data->no_of_philosophers)
+		if (i == o_data->no_of_philosophers - 1)
 			i = 0;
-		i++;
+		else
+			i++;
 	}
 	nuka_cola(NULL, o_data, p_data[i]);
 	return (data);

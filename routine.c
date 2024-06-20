@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:56:51 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/20 09:34:42 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/20 11:36:06 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,11 @@
 
 int dying(t_data *data, t_overseer *overseer)
 {
-	int	i;
-
-	i = 0;
 	if (overseer->sleep_time >= overseer->death_time) // need to add meals eaten
 	{
 		overseer->death_flag = 1;
-		if (microphone(data, overseer, "has died") == 0)
-			return (0);
-		while (i < overseer->no_of_philosophers)
-		{
-			if (wait_in_line_sir(data->right_fork, LOCK) == 0)
-			{
-				nuka_cola(NULL, overseer, data);
-				return (0);
-			}
-			i++;
-		}
+		microphone(data, overseer, "has died");
+		pthread_mutex_lock(data->right_fork);
 		return (0);
 	}
 	return (1);
@@ -41,7 +29,7 @@ int	eating(t_data *data, t_overseer *overseer)
 	
 	if (overseer->death_flag == 1) //|| overseer->eaten_flag == 1
 		return (0);
-	pthread_mutex_lock(data->right_fork);
+	pthread_mutex_lock(data->right_fork); // segfault originates from here
 	microphone(data, overseer, "has taken a fork");
 	pthread_mutex_lock(data->left_fork);
 	microphone(data, overseer, "has taken a fork");
@@ -53,6 +41,7 @@ int	eating(t_data *data, t_overseer *overseer)
 	ft_usleep(overseer->feed_time);
 	pthread_mutex_unlock(data->right_fork);
 	pthread_mutex_unlock(data->left_fork);
+	ft_usleep(5);
 	return (1);
 }
 

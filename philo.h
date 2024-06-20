@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/19 15:28:23 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/20 11:25:25 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,12 @@ void		ft_usleep(size_t milisecs);
 /*					struct_utils.c					*/
 int			struct_filler(t_data **data, t_overseer *overseer, char **argv);
 int			struct_init(t_data **data, t_overseer *overseer, char **argv);
+int			fork_me(t_data **data, t_overseer *overseer);
 int			overseer_filler(t_overseer *overseer, char **argv);
 // void		struct_printer(t_data **data, t_overseer *overseer); // remove
 
 /*					locks.c							*/
 int			init_locks(t_overseer *overseer, t_data **data);
-int			wait_in_line_sir(t_mtx *lock, int flag);
 
 /*					routine_utils.c					 */
 int			im_gonna_barf(t_overseer *overseer, int meal);
