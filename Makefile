@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lstorey <lstorey@student.42.fr>            +#+  +:+       +#+         #
+#    By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:11:18 by fdessoy-          #+#    #+#              #
-#    Updated: 2024/06/18 14:41:12 by lstorey          ###   ########.fr        #
+#    Updated: 2024/06/20 14:17:11 by fdessoy-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,7 @@ SRC 		=	philo.c\
 				utils.c\
 				struct_utils.c\
 				main.c\
-				locks.c\
-				routine.c\
-				routine_utils.c
+				routine.c
 		
 OBJ  		= 	$(SRC:.c=.o) 
 
@@ -31,12 +29,8 @@ $(NAME)		:	$(OBJ)
 				
 %.o			:	%.c
 				$(CC) $(FLAGS) -c $< -o $@
-				
-				
-all			:	$(NAME)
-
-#san			: DOESNT WORK IN LINUX
-#				$(CC) $(FLAGS) -g -fsanitize=address -static-libasan $(SRC) -o san 
+					
+all			:	$(NAME) 
 
 clean		:	
 				rm -f $(OBJ)

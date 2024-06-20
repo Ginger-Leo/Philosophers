@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/20 13:26:16 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/20 14:47:56 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 	while (i < ft_atoi(argv[1]))
 	{
 		data[i]->times_eaten = 0;
+		data[i]->last_time_eaten = 0;
 		data[i]->philo_id = i + 1;
 		data[i]->overseer = overseer;
 		data[i]->right_fork = malloc(sizeof(t_mtx));
@@ -88,6 +89,20 @@ int	overseer_filler(t_overseer *overseer, char **argv)
 	overseer->mic_lock = malloc(sizeof(t_mtx));
 	if (!overseer->mic_lock)
 		return (0);
+	overseer->death_lock = malloc(sizeof(t_mtx));
+	if (!overseer->death_lock)
+		return (0);
+	return (1);
+}
+
+int		init_locks(t_overseer *overseer, t_data **data)
+{
+	if (pthread_mutex_init(overseer->mic_lock, NULL) != 0)
+		nuka_cola(ERR_MUTEX, overseer, *data);
+	if (pthread_mutex_init(overseer->meal_lock, NULL) != 0)
+		nuka_cola(ERR_MUTEX, overseer, *data);
+	if (pthread_mutex_init(overseer->death_lock, NULL) != 0)
+		nuka_cola(ERR_MUTEX, overseer, *data);
 	return (1);
 }
 

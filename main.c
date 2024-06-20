@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:56 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/20 13:27:47 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/20 13:47:01 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ int	main(int argc, char **argv)
 		if (struct_init(data, overseer, argv) == 0)
 			return (0);
 		philosophize(data, overseer);
-		free_struct(data);
-		free(overseer->meal_lock);
-		free(overseer->mic_lock);
-		free(overseer);
+		free_struct(data, overseer);
 	}
 	else
 		ft_putstr_fd("Wrong number of arguments: must be four of five.\n", 2);
