@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/20 14:48:36 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:58:42 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define DATA 99
 # define OVERSEER 66
 # define BOTH 69
+# define INT_MAX 2147483646
 # define ERR_TIME "Time collection failed"
 # define ERR_MUTEX "Mutex failure"
 # define ERR_MIC "Output failure"
@@ -47,7 +48,6 @@ typedef struct s_overseer
 	size_t				sleep_time;
 	int					times_to_eat;
 	int					death_flag;
-	int					eaten_flag;
 	size_t				start_time;
 	t_mtx				*meal_lock;
 	t_mtx				*death_lock;

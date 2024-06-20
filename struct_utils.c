@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/20 14:47:56 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/20 15:59:23 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 	while (i < ft_atoi(argv[1]))
 	{
 		data[i]->times_eaten = 0;
-		data[i]->last_time_eaten = 0;
 		data[i]->philo_id = i + 1;
 		data[i]->overseer = overseer;
 		data[i]->right_fork = malloc(sizeof(t_mtx));
@@ -83,6 +82,8 @@ int	overseer_filler(t_overseer *overseer, char **argv)
 	overseer->sleep_time = ft_atoi(argv[4]);
 	if (argv[5])
 		overseer->times_to_eat = ft_atoi(argv[5]);
+	if (!argv[5])
+		overseer->times_to_eat = INT_MAX;
 	overseer->meal_lock = malloc(sizeof(t_mtx));
 	if (!overseer->meal_lock)
 		return (0);

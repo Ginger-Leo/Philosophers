@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lstorey <lstorey@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/20 14:30:26 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/20 16:46:05 by lstorey          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	free_struct(t_data **data, t_overseer *overseer)
 	i = 0;
 	while (data[i])
 	{
-		free(data[i]);
 		free(data[i]->right_fork);
+		free(data[i]);
 		i++;
 	}
 	free(data);
