@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:01:07 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/20 09:33:34 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 11:53:11 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 int	parsing(char **argv)
 {
+	if (no_characters(argv) == 0)
+	{
+		ft_putstr_fd("Error: must be an integer\n", 2);
+		return (0);
+	}
 	if (ft_atoi(argv[1]) < 1 || ft_atoi(argv[1]) > MAX_PHILOS ||
 	ft_atoi(argv[2]) < 1 || ft_atoi(argv[3]) < 1 || ft_atoi(argv[4]) < 1)
 	{
@@ -22,7 +27,7 @@ int	parsing(char **argv)
 	}
 	else if (argv[5])
 	{
-		if (ft_atoi(argv[5]) < 0 || !ft_isdigit(argv[5][0]))
+		if (ft_atoi(argv[5]) < 0)
 		{
 			ft_putstr_fd("Error: must be positive and above zero\n", 2);
 			return (0);
@@ -31,10 +36,21 @@ int	parsing(char **argv)
 	return (1);
 }
 
-int		ft_isdigit(int c)
+int		no_characters(char **argv)
 {
-	if (c > 47 && c < 58)
-		return (1);
-	else
-		return (0);
+	int i = 1;
+	int j = 0;
+	
+	while (argv[i])
+	{
+		j = 0;
+		while (argv[i][j])
+		{
+			if (!(argv[i][j] >= '0' && argv[i][j] <= '9'))
+				return (0);
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }

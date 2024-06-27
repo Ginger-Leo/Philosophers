@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/20 17:23:31 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/27 11:03:11 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,7 @@ void	free_struct(t_data **data, t_overseer *overseer)
 	}
 	free(data);
 	data = NULL;
-	free(overseer->meal_lock);
 	free(overseer->mic_lock);
-	free(overseer->death_lock);
 	free(overseer);
 }
 
@@ -77,9 +75,7 @@ void	nuka_cola(char *str, t_overseer *overseer, t_data *data)
 		pthread_mutex_destroy(data-> right_fork);
 		i++;
 	}
-	// pthread_mutex_destroy(overseer->meal_lock);
 	pthread_mutex_destroy(overseer->mic_lock);
-	pthread_mutex_destroy(overseer->death_lock);
 }
 
 void	ft_usleep(size_t milisecs)

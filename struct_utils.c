@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/20 17:22:41 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/27 11:08:19 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	struct_init(t_data **data, t_overseer *overseer, char **argv)
 	if (struct_filler(data, overseer, argv) == 0 ||
 	init_locks(overseer, data) == 0)
 		return (0);
-	
 	return (1);
 }
 
@@ -84,14 +83,10 @@ int	overseer_filler(t_overseer *overseer, char **argv)
 		overseer->times_to_eat = ft_atoi(argv[5]);
 	if (!argv[5])
 		overseer->times_to_eat = INT_MAX;
-	// overseer->meal_lock = malloc(sizeof(t_mtx));
-	// if (!overseer->meal_lock)
-	// 	return (0);
+	overseer->can_i_print = 0;
+	overseer->death_flag = 0;
 	overseer->mic_lock = malloc(sizeof(t_mtx));
 	if (!overseer->mic_lock)
-		return (0);
-	overseer->death_lock = malloc(sizeof(t_mtx));
-	if (!overseer->death_lock)
 		return (0);
 	return (1);
 }
@@ -99,10 +94,6 @@ int	overseer_filler(t_overseer *overseer, char **argv)
 int		init_locks(t_overseer *overseer, t_data **data)
 {
 	if (pthread_mutex_init(overseer->mic_lock, NULL) != 0)
-		nuka_cola(ERR_MUTEX, overseer, *data);
-	// if (pthread_mutex_init(overseer->meal_lock, NULL) != 0)
-	// 	nuka_cola(ERR_MUTEX, overseer, *data);
-	if (pthread_mutex_init(overseer->death_lock, NULL) != 0)
 		nuka_cola(ERR_MUTEX, overseer, *data);
 	return (1);
 }

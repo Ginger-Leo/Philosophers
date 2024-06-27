@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lstorey <lstorey@student.42.fr>            +#+  +:+       +#+        */
+/*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/20 15:58:42 by lstorey          ###   ########.fr       */
+/*   Updated: 2024/06/27 11:27:11 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_overseer
 	size_t				sleep_time;
 	int					times_to_eat;
 	int					death_flag;
+	int					can_i_print;
 	size_t				start_time;
 	t_mtx				*meal_lock;
 	t_mtx				*death_lock;
@@ -84,7 +85,7 @@ int			im_gonna_barf(t_overseer *overseer, int meal);
 
 /*					parsing.c						*/
 int			parsing(char **argv);
-int			ft_isdigit(int c);
+int			no_characters(char **argv);
 
 /*					utils.c							*/
 int			ft_atoi(const char *str);
