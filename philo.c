@@ -22,13 +22,11 @@ void	philosophize(t_data **data, t_overseer *overseer)
 	{
 		data[i]->start_time = overseer->start_time;
 		data[i]->last_time_eaten = overseer->start_time;
-		if (pthread_create(&data[i]->p_thread, NULL, &dinner_for_x, data[i]) != 0)
+		if (pthread_create(&data[i]->p_thread, NULL,
+				&dinner_for_x, data[i]) != 0)
 			nuka_cola("Thread creation failed\n", overseer, data);
 		i++;
-		
 	}
-	// while (overseer->death_flag != 1)
-	// 	;
 }
 
 void	*dinner_for_x(void *data)
@@ -36,22 +34,21 @@ void	*dinner_for_x(void *data)
 	t_data			*p_data;
 
 	p_data = (t_data *)data;
+	if (dinner_for_one(p_data, p_data->overseer) == 0)
+		return (NULL);
 	if (p_data->philo_id % 2 == 0)
 		ft_usleep(42, p_data->overseer);
-	while (p_data->overseer->death_flag != 1 || p_data->times_eaten <= p_data->overseer->times_to_eat)
+	while (p_data->overseer->death_flag != 1
+		|| p_data->times_eaten <= p_data->overseer->times_to_eat)
 	{
-		if (p_data->overseer->no_of_philosophers == 1)
-		{
-			dinner_for_one(p_data, p_data->overseer);
-			break ;
-		}
 		if (dying(p_data, p_data->overseer) == 0)
 			break ;
 		if (eating(p_data, p_data->overseer) == 0)
 			break ;
 		if (sleeping(p_data, p_data->overseer) == 0)
 			break ;
-		if (p_data->overseer->can_i_print == 1 || thinking(p_data, p_data->overseer) == 0)
+		if (p_data->overseer->can_i_print == 1
+			|| thinking(p_data, p_data->overseer) == 0)
 			break ;
 	}
 	pthread_mutex_unlock(p_data->right_fork);
@@ -60,8 +57,13 @@ void	*dinner_for_x(void *data)
 	return (NULL);
 }
 
-void	dinner_for_one(t_data *data, t_overseer *overseer)
+int	dinner_for_one(t_data *data, t_overseer *overseer)
 {
-	ft_usleep(overseer->death_time, overseer);
-	microphone(data, overseer, "has died");
+	if (overseer->no_of_philosophers == 1)
+	{
+		ft_usleep(overseer->death_time, overseer);
+		microphone(data, overseer, "died");
+		return (0);
+	}
+	return (1);
 }
