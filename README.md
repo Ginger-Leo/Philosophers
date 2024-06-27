@@ -96,15 +96,3 @@ This project main objective is to create threads and, consequentially, to do mul
 2. The race condition may be originating from the eating() because the forks are locked while one of the philosophers is trying to access them. Therefore, the solution may be to come up with a function that is going to keep the philosophers waiting for their forks when not available (function name is the_line());
 3. After using fsanitize=thread we were able to check which function was presenting race conditions. The eating() part of the routine has the a double lock in the microphone(), which already has a lock in itself and does not need an extraneous lock, otherwhise other philosophers will have problems trying to access it;
 ```
-
-Things to do....
-1. Make function for resetting death timer after eating.
-2. Make sleep timer to start after eating (must run for 'time to sleep').
-3. Make mutex for printer so nothing gets printed after a death of a philo.
-4. Make a printer with standardised messages "philo no.< > is < >" etc...
-5. Memory management - DONE
-6. Figure out how to lock everything and exit from the threads
-```
-About author.
-Felipe is a fiercely erotic, peacock introvert. he struggles walking in straight lines due to his tiny feet and terrible sense of direction. If he were an animal, he'd be jellyfish, because thier personalities are so similar.
-```
