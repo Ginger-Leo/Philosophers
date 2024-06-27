@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/27 23:06:59 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:11:52 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ typedef struct s_data
 /*					philo.c							*/
 void		philosophize(t_data **data, t_overseer *overseer);
 void		*dinner_for_x(void *data);
-int			dinner_for_one(t_data *data, t_overseer *overseer);
 void		drop_mic_forks(t_data *data);
+int			dinner_for_one(t_data *data, t_overseer *overseer);
 
 /*					printer.c						*/
 void		ft_putstr_fd(char *str, int fd);
@@ -79,7 +79,6 @@ int			dying(t_data *data, t_overseer *overseer);
 int			eating(t_data *data, t_overseer *overseer);
 int			thinking(t_data *data, t_overseer *overseer);
 int			sleeping(t_data *data, t_overseer *overseer);
-int			im_gonna_barf(t_overseer *overseer, int meal);
 
 /*					parsing.c						*/
 int			parsing(char **argv);
@@ -89,7 +88,7 @@ int			no_characters(char **argv);
 int			ft_atoi(const char *str);
 size_t		what_time_is_it(void);
 void		nuka_cola(char *str, t_overseer *overseer, t_data **data);
-void		free_struct(t_data **data, t_overseer *overseer);
+void		clearing(t_data **data, t_overseer *overseer);
 void		ft_usleep(size_t milisecs, t_overseer *overseer);
 
 /*					struct_utils.c					*/

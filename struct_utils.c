@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 16:07:05 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:10:33 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,12 @@ int	struct_filler(t_data **data, t_overseer *overseer, char **argv)
 	if (overseer_filler(overseer, argv) == 0)
 		return (0);
 	i = 0;
-	while (i < ft_atoi(argv[1]))
+	while (i < overseer->no_of_philosophers)
 	{
 		data[i]->times_eaten = 0;
 		data[i]->philo_id = i + 1;
 		data[i]->overseer = overseer;
+		data[i]->last_time_eaten = 0;
 		data[i]->right_fork = malloc(sizeof(t_mtx));
 		if (!data[i]->right_fork)
 			return (0);

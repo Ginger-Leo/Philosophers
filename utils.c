@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 15:48:22 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:13:28 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ size_t	what_time_is_it(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-void	free_struct(t_data **data, t_overseer *overseer)
+void	clearing(t_data **data, t_overseer *overseer)
 {
 	int	i;
 
@@ -70,6 +70,7 @@ void	free_struct(t_data **data, t_overseer *overseer)
 	free(data);
 	data = NULL;
 	free(overseer->mic_lock);
+	free(overseer->death_lock);
 	free(overseer);
 
 }
