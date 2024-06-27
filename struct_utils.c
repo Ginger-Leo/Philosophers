@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 14:37:48 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:07:05 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,17 @@ int	overseer_filler(t_overseer *overseer, char **argv)
 	overseer->mic_lock = malloc(sizeof(t_mtx));
 	if (!overseer->mic_lock)
 		return (0);
+	overseer->death_lock = malloc(sizeof(t_mtx));
+	if (!overseer->death_lock)
+		return (0);
 	return (1);
 }
 
 int		init_locks(t_overseer *overseer, t_data **data)
 {
 	if (pthread_mutex_init(overseer->mic_lock, NULL) != 0)
+		nuka_cola(ERR_MUTEX, overseer, data);
+	if (pthread_mutex_init(overseer->death_lock, NULL) != 0)
 		nuka_cola(ERR_MUTEX, overseer, data);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 14:37:12 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:48:22 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	free_struct(t_data **data, t_overseer *overseer)
 	int	i;
 
 	i = 0;
-	nuka_cola(NULL, overseer, data);
+	
 	while (i < overseer->no_of_philosophers)
 	{
 		// printf("THREAD GOT JOINED\n");
@@ -59,6 +59,7 @@ void	free_struct(t_data **data, t_overseer *overseer)
 			nuka_cola("Thread join failed\n", overseer, data);
 		i++;
 	}
+	nuka_cola(NULL, overseer, data);
 	i = 0;
 	while (data[i])
 	{

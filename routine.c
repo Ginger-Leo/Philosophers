@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:56:51 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 14:30:16 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:14:43 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ int dying(t_data *data, t_overseer *overseer)
 	elapsed_time >= overseer->death_time) && overseer->can_i_print == 0)
 	{
 		overseer->death_flag = 1;
-		microphone(data, overseer, "has died");
+		microphone(data, overseer, "died");
+		pthread_mutex_lock(overseer->death_lock);
 		overseer->can_i_print = 1;
+		pthread_mutex_unlock(overseer->death_lock);
 		return (0);
 	}
 	if (overseer->death_flag == 1)
@@ -57,7 +59,7 @@ int	thinking(t_data *data, t_overseer *overseer)
 		return (0);
 	if (microphone(data, overseer, "is thinking") == 0)
 		return (0);
-	return (1);	
+	return (1);
 }
 
 int	sleeping(t_data *data, t_overseer *overseer)

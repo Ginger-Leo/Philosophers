@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 12:26:25 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 14:36:06 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:22:22 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	*dinner_for_x(void *data)
 			break ;
 		if (sleeping(p_data, p_data->overseer) == 0)
 			break ;
-		if (thinking(p_data, p_data->overseer) == 0)
+		if (p_data->overseer->can_i_print == 1 || thinking(p_data, p_data->overseer) == 0)
 			break ;
 	}
 	pthread_mutex_unlock(p_data->right_fork);
