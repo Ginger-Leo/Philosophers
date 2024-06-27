@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:56:51 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 16:14:43 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:41:17 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ int dying(t_data *data, t_overseer *overseer)
 	{
 		overseer->death_flag = 1;
 		microphone(data, overseer, "died");
-		pthread_mutex_lock(overseer->death_lock);
+		if (pthread_mutex_lock(overseer->death_lock) != 0)
+			return (0);
 		overseer->can_i_print = 1;
-		pthread_mutex_unlock(overseer->death_lock);
+		if (pthread_mutex_unlock(overseer->death_lock) != 0)
+			return (0);
 		return (0);
 	}
 	if (overseer->death_flag == 1)
@@ -38,18 +40,21 @@ int dying(t_data *data, t_overseer *overseer)
 
 int	eating(t_data *data, t_overseer *overseer)
 {
-	if (overseer->death_flag == 1 || data->times_eaten >= overseer->times_to_eat) //|| overseer->eaten_flag == 1
+	if (overseer->death_flag == 1 || data->times_eaten >= overseer->times_to_eat)
 		return (0);
-	pthread_mutex_lock(data->right_fork);
-	pthread_mutex_lock(data->left_fork);
-	microphone(data, overseer, "has taken a fork");
-	microphone(data, overseer, "has taken a fork");
-	microphone(data, overseer, "is eating");
+	if (pthread_mutex_lock(data->right_fork) != 0
+		|| pthread_mutex_lock(data->left_fork) != 0)
+		return (0);
+	if (microphone(data, overseer, "has taken a fork") == 0
+		|| microphone(data, overseer, "has taken a fork") == 0
+		|| microphone(data, overseer, "is eating") == 0)
+		return (0);
 	data->times_eaten += 1;
 	data->last_time_eaten = what_time_is_it();
 	ft_usleep(overseer->feed_time, overseer);
-	pthread_mutex_unlock(data->left_fork);
-	pthread_mutex_unlock(data->right_fork);
+	if (pthread_mutex_unlock(data->left_fork) != 0
+		|| pthread_mutex_unlock(data->right_fork) != 0)
+		return (0);
 	return (1);
 }
 
