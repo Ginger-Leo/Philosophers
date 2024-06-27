@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 12:26:25 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 23:03:23 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:03:58 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	*dinner_for_x(void *data)
 	if (p_data->philo_id % 2 == 0)
 	{
 		microphone(p_data, p_data->overseer, "is thinking");
-		ft_usleep(42, p_data->overseer));
+		ft_usleep(42, p_data->overseer);
 	}
 	while (p_data->overseer->death_flag != 1
 		|| p_data->times_eaten <= p_data->overseer->times_to_eat)
