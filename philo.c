@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 12:26:25 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 23:03:58 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 23:06:28 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,15 @@ void	*dinner_for_x(void *data)
 			|| thinking(p_data, p_data->overseer) == 0)
 			break ;
 	}
-	pthread_mutex_unlock(p_data->right_fork);
-	pthread_mutex_unlock(p_data->left_fork);
-	pthread_mutex_unlock(p_data->overseer->mic_lock);
+	drop_mic_forks(p_data);
 	return (NULL);
+}
+
+void	drop_mic_forks(t_data *data)
+{
+	pthread_mutex_unlock(data->right_fork);
+	pthread_mutex_unlock(data->left_fork);
+	pthread_mutex_unlock(data->overseer->mic_lock);
 }
 
 int	dinner_for_one(t_data *data, t_overseer *overseer)
