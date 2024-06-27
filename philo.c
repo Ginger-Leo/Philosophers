@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 12:26:25 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 14:21:49 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:36:06 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	philosophize(t_data **data, t_overseer *overseer)
 		data[i]->start_time = overseer->start_time;
 		data[i]->last_time_eaten = overseer->start_time;
 		if (pthread_create(&data[i]->p_thread, NULL, &dinner_for_x, data[i]) != 0)
-			nuka_cola("Thread creation failed\n", overseer, data[i]);
+			nuka_cola("Thread creation failed\n", overseer, data);
 		i++;
 		
 	}
@@ -57,7 +57,6 @@ void	*dinner_for_x(void *data)
 	pthread_mutex_unlock(p_data->right_fork);
 	pthread_mutex_unlock(p_data->left_fork);
 	pthread_mutex_unlock(p_data->overseer->mic_lock);
-	nuka_cola(NULL, p_data->overseer, p_data);
 	return (NULL);
 }
 

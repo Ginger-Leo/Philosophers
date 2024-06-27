@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 11:08:19 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:37:48 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	overseer_filler(t_overseer *overseer, char **argv)
 int		init_locks(t_overseer *overseer, t_data **data)
 {
 	if (pthread_mutex_init(overseer->mic_lock, NULL) != 0)
-		nuka_cola(ERR_MUTEX, overseer, *data);
+		nuka_cola(ERR_MUTEX, overseer, data);
 	return (1);
 }
 

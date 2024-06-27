@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/27 12:10:42 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:35:12 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int			no_characters(char **argv);
 /*					utils.c							*/
 int			ft_atoi(const char *str);
 size_t		what_time_is_it(void);
-void		nuka_cola(char *str, t_overseer *overseer, t_data *data);
+void		nuka_cola(char *str, t_overseer *overseer, t_data **data);
 void		free_struct(t_data **data, t_overseer *overseer);
 void		ft_usleep(size_t milisecs, t_overseer *overseer);
 
