@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/27 11:27:11 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 12:10:42 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int			ft_atoi(const char *str);
 size_t		what_time_is_it(void);
 void		nuka_cola(char *str, t_overseer *overseer, t_data *data);
 void		free_struct(t_data **data, t_overseer *overseer);
-void		ft_usleep(size_t milisecs);
+void		ft_usleep(size_t milisecs, t_overseer *overseer);
 
 /*					struct_utils.c					*/
 int			struct_filler(t_data **data, t_overseer *overseer, char **argv);
@@ -100,9 +100,5 @@ int			struct_init(t_data **data, t_overseer *overseer, char **argv);
 int			fork_me(t_data **data, t_overseer *overseer);
 int			overseer_filler(t_overseer *overseer, char **argv);
 int			init_locks(t_overseer *overseer, t_data **data);
-// void		struct_printer(t_data **data, t_overseer *overseer); // remove
-
-/*					locks.c							*/
-
 
 #endif

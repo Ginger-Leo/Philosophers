@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:20:07 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 11:12:53 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:25:26 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	microphone(t_data *data, t_overseer *overseer, char *action)
 {
 	int	timestamp;
 
+	if (overseer->can_i_print == 1)
+		return (0);
 	pthread_mutex_lock(overseer->mic_lock);
 	timestamp = what_time_is_it() - overseer->start_time;	
 	if (overseer->death_flag == 1)

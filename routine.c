@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:56:51 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 11:02:22 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:23:10 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int dying(t_data *data, t_overseer *overseer)
 		overseer->can_i_print = 1;
 		return (0);
 	}
+	if (overseer->death_flag == 1)
+		return (0);
 	return (1);
 }
 
@@ -36,23 +38,25 @@ int	eating(t_data *data, t_overseer *overseer)
 {
 	if (overseer->death_flag == 1 || data->times_eaten >= overseer->times_to_eat) //|| overseer->eaten_flag == 1
 		return (0);
-	pthread_mutex_lock(data->right_fork);
-	microphone(data, overseer, "has taken a fork");
-	pthread_mutex_lock(data->left_fork);
-	microphone(data, overseer, "has taken a fork");
-	microphone(data, overseer, "is eating");
-	data->times_eaten += 1;
-	data->last_time_eaten = what_time_is_it();
-	ft_usleep(overseer->feed_time);
-	pthread_mutex_unlock(data->left_fork);
-	pthread_mutex_unlock(data->right_fork);
-	ft_usleep(5);
+	if (overseer->death_flag == 0)
+	{
+		pthread_mutex_lock(data->right_fork);
+		pthread_mutex_lock(data->left_fork);
+		microphone(data, overseer, "has taken a fork");
+		microphone(data, overseer, "has taken a fork");
+		microphone(data, overseer, "is eating");
+		data->times_eaten += 1;
+		data->last_time_eaten = what_time_is_it();
+		ft_usleep(overseer->feed_time, overseer);
+		pthread_mutex_unlock(data->left_fork);
+		pthread_mutex_unlock(data->right_fork);
+		return (1);
+	}
 	return (1);
 }
 
 int	thinking(t_data *data, t_overseer *overseer)
 {
-	// printf("philo %i entered thinking\n", data->philo_id);
 	if (overseer->death_flag == 1)
 		return (0);
 	if (microphone(data, overseer, "is thinking") == 0)
@@ -62,21 +66,12 @@ int	thinking(t_data *data, t_overseer *overseer)
 
 int	sleeping(t_data *data, t_overseer *overseer)
 {
-	// printf("philo %i entered sleeping\n", data->philo_id);
 	if (overseer->death_flag == 1)
 		return (0);
 	if (microphone(data, overseer, "is sleeping") == 0)
 		return (0);
-	ft_usleep(overseer->sleep_time);
+	ft_usleep(overseer->sleep_time, overseer);
+	if (overseer->death_flag == 1)
+		return (0);
 	return (1);
 }
-
-// int	im_gonna_barf(t_overseer *overseer, int meal)
-// {
-// 	if (meal == overseer->times_to_eat)
-// 	{
-// 		overseer->eaten_flag = 1;
-// 		return (0);
-// 	}
-// 	return (1);
-// }

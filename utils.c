@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 11:03:11 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/27 14:22:11 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,14 @@ void	free_struct(t_data **data, t_overseer *overseer)
 	int	i;
 
 	i = 0;
+	while (i < overseer->no_of_philosophers)
+	{
+		// printf("THREAD GOT JOINED\n");
+		if (pthread_join(data[i]->p_thread, NULL) != 0)
+			nuka_cola("Thread join failed\n", overseer, data[i]);
+		i++;
+	}
+	i = 0;
 	while (data[i])
 	{
 		free(data[i]->right_fork);
@@ -61,6 +69,7 @@ void	free_struct(t_data **data, t_overseer *overseer)
 	data = NULL;
 	free(overseer->mic_lock);
 	free(overseer);
+
 }
 
 void	nuka_cola(char *str, t_overseer *overseer, t_data *data)
@@ -72,18 +81,22 @@ void	nuka_cola(char *str, t_overseer *overseer, t_data *data)
 		ft_putstr_fd(str, 2);
 	while (i < data->overseer->no_of_philosophers)
 	{
-		pthread_mutex_destroy(data-> right_fork);
+		pthread_mutex_destroy(data->right_fork);
 		i++;
 	}
 	pthread_mutex_destroy(overseer->mic_lock);
 }
 
-void	ft_usleep(size_t milisecs)
+void	ft_usleep(size_t milisecs, t_overseer *overseer)
 {
 	size_t	start;
 
 	start = what_time_is_it();
 	while ((what_time_is_it() - start) < milisecs)
-		usleep(500);
-
+	{
+		if (overseer->death_flag == 1)
+			return ;
+		else
+			usleep(500);
+	}
 }
