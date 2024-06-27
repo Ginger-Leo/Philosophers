@@ -70,7 +70,7 @@ typedef struct s_data
 /*					philo.c							*/
 void		philosophize(t_data **data, t_overseer *overseer);
 void		*dinner_for_x(void *data);
-void		dinner_for_one(t_data *data, t_overseer *overseer);
+int		dinner_for_one(t_data *data, t_overseer *overseer);
 
 /*					printer.c						*/
 void		ft_putstr_fd(char *str, int fd);
