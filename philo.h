@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/28 11:24:47 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:44:41 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,8 @@
 # include <string.h>
 # include <sys/time.h>
 
-
 /* defines */
 # define MAX_PHILOS 200
-# define LOCK 1
-# define UNLOCK 2
 # define INT_MAX 2147483646
 # define ERR_TIME "Time collection failed"
 # define ERR_MUTEX "Mutex failure"
@@ -43,6 +40,7 @@ typedef struct s_overseer
 	size_t				death_time;
 	size_t				feed_time;
 	size_t				sleep_time;
+	t_data				**data;
 	int					times_to_eat;
 	int					death_flag;
 	int					can_i_print;
@@ -67,6 +65,7 @@ typedef struct s_data
 /*					philo.c							*/
 void		philosophize(t_data **data, t_overseer *overseer);
 void		*dinner_for_x(void *data);
+int			monitoring(t_overseer *os);
 void		drop_mic_forks(t_data *data);
 int			dinner_for_one(t_data *data, t_overseer *overseer);
 
@@ -75,7 +74,7 @@ void		ft_putstr_fd(char *str, int fd);
 int			microphone(t_data *data, t_overseer *overseer, char *action);
 
 /*					routine.c						*/
-int			dying(t_data *data, t_overseer *overseer);
+int			dying(t_overseer *overseer, t_data *data);
 int			eat_pray_love(t_data *data, t_overseer *overseer);
 int			try_pick_fork(t_data *data, t_overseer *overseer);
 

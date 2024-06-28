@@ -6,13 +6,13 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:56:51 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/28 15:22:43 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/28 17:35:11 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int dying(t_data *data, t_overseer *overseer)
+int dying(t_overseer *overseer, t_data *data)
 {
 	if (overseer->death_flag == 1)
 		return (0);
@@ -44,12 +44,6 @@ int	eat_pray_love(t_data *data, t_overseer *overseer)
 	if (microphone(data, overseer, "is eating") == 0)
 		return (0);
 	data->times_eaten += 1;
-	if (overseer->death_flag == 1)
-	{
-		pthread_mutex_unlock(data->right_fork);
-		pthread_mutex_unlock(data->left_fork);
-		return (0);
-	}
 	ft_usleep(overseer->feed_time, overseer);
 	pthread_mutex_unlock(data->left_fork);
 	pthread_mutex_unlock(data->right_fork);
@@ -71,13 +65,13 @@ int	try_pick_fork(t_data *data, t_overseer *overseer)
 		if (!pthread_mutex_lock(data->right_fork))
 		{
 			i++;
-			microphone(data, overseer, "has taken a fork");
+			microphone(data, overseer, "has taken a r-fork");
 		}
 		if (!pthread_mutex_lock(data->left_fork))
 			i++;
 		if (i == 2)
 		{
-			microphone(data, overseer, "has taken a fork");
+			microphone(data, overseer, "has taken a l-fork");
 			return (1);
 		}
 		else
