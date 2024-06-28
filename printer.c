@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:20:07 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/28 10:56:05 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/28 14:22:44 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,8 @@ int	microphone(t_data *data, t_overseer *overseer, char *action)
 		printf("%i %i %s\n", timestamp, data->philo_id, action);
 		if (overseer->can_i_print == 1)
 			pthread_mutex_unlock(overseer->mic_lock);
-		pthread_mutex_unlock(data->left_fork);
-		pthread_mutex_unlock(data->right_fork);	
 		return (0);
 	}
-	pthread_mutex_unlock(data->left_fork);
-	pthread_mutex_unlock(data->right_fork);
 	printf("%i %i %s\n", timestamp, data->philo_id, action);
 	if (strcmp(action, "died") == 0)
 		overseer->can_i_print = 1;
