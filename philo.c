@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 12:26:25 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/28 11:27:05 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:14:14 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ void	philosophize(t_data **data, t_overseer *overseer)
 	overseer->start_time = what_time_is_it();
 	while (i < overseer->no_of_philosophers)
 	{
-		data[i]->start_time = what_time_is_it();
 		data[i]->last_time_eaten = overseer->start_time;
+		data[i]->start_time = what_time_is_it();
 		if (pthread_create(&data[i]->p_thread, NULL,
 				&dinner_for_x, data[i]) != 0)
 			nuka_cola("Thread creation failed\n", overseer, data);
 		i++;
 	}
+	// pthread_create(overseer->o_thread, NULL, &monitor, )
 }
 
 void	*dinner_for_x(void *data)
@@ -39,7 +40,7 @@ void	*dinner_for_x(void *data)
 	if (p_data->philo_id % 2 == 0)
 	{
 		microphone(p_data, p_data->overseer, "is thinking");
-		ft_usleep(p_data->overseer->feed_time / 10, p_data->overseer);
+		ft_usleep(p_data->overseer->feed_time, p_data->overseer);
 	}
 	while (1)
 	{

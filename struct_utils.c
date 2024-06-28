@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 13:13:46 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 23:17:45 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:05:29 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,9 @@ int	overseer_filler(t_overseer *overseer, char **argv)
 	overseer->death_lock = malloc(sizeof(t_mtx));
 	if (!overseer->death_lock)
 		return (0);
+	overseer->meal_lock = malloc(sizeof(t_mtx));
+	if (!overseer->meal_lock)
+		return (0);
 	return (1);
 }
 
@@ -100,34 +103,7 @@ int		init_locks(t_overseer *overseer, t_data **data)
 		nuka_cola(ERR_MUTEX, overseer, data);
 	if (pthread_mutex_init(overseer->death_lock, NULL) != 0)
 		nuka_cola(ERR_MUTEX, overseer, data);
+	if (pthread_mutex_init(overseer->meal_lock, NULL) != 0)
+		nuka_cola(ERR_MUTEX, overseer, data);
 	return (1);
 }
-
-// void	struct_printer(t_data **data, t_overseer *overseer)
-// {
-// 	int i = 0;
-
-// 	while (i < overseer->no_of_philosophers)
-// 	{
-// 		printf("\nPhilosophers: %i\n", data[i]->no_of_philosophers);
-// 		printf("death time : %i\n", data[i]->death_time);
-// 		printf("feed time  : %i\n", data[i]->feed_time);
-// 		printf("sleep time : %i\n", data[i]->sleep_time);
-// 		printf("start time : %zu\n", data[i]->start_time);
-// 		printf("ID            : %i\n", data[i]->philo_id);
-// 		printf("Fork	      : %p\n\n", data[i]->forks[i]);
-// 		i++;
-// 	}
-// 	printf("\n ======= OVERSEER  ======= \n\n");
-// 	printf("Philosophers: %i\n", overseer->no_of_philosophers);
-// 	printf("death time : %i\n", overseer->death_time);
-// 	printf("feed time  : %i\n", overseer->feed_time);
-// 	printf("sleep time : %i\n", overseer->sleep_time);
-// 	printf("start time : %zu\n", overseer->start_time);
-// 	printf("Fork	   : %p\n", overseer->forks);
-// 	return ;
-// }
-		// data[i]->left_fork = malloc(sizeof(t_mtx)); // might all be unnecessary
-		// if (!data[i]->left_fork)
-		// 	return (0);
-		// pthread_mutex_init(data[i]->left_fork, NULL);

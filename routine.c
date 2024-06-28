@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:56:51 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/28 11:24:51 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/28 15:22:43 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int dying(t_data *data, t_overseer *overseer)
 {
 	if (overseer->death_flag == 1)
 		return (0);
-	if ((what_time_is_it() - data->last_time_eaten > overseer->death_time) 
+	if ((what_time_is_it() - data->last_time_eaten >= overseer->death_time)
 		&& overseer->can_i_print == 0)
 	{
 		if (pthread_mutex_lock(overseer->death_lock) != 0)
@@ -38,10 +38,18 @@ int	eat_pray_love(t_data *data, t_overseer *overseer)
 	if (overseer->death_flag == 1 || data->times_eaten >= overseer->times_to_eat)
 		return (0);
 	try_pick_fork(data, overseer);
+	pthread_mutex_lock(overseer->meal_lock);
 	data->last_time_eaten = what_time_is_it();
+	pthread_mutex_unlock(overseer->meal_lock);
 	if (microphone(data, overseer, "is eating") == 0)
 		return (0);
 	data->times_eaten += 1;
+	if (overseer->death_flag == 1)
+	{
+		pthread_mutex_unlock(data->right_fork);
+		pthread_mutex_unlock(data->left_fork);
+		return (0);
+	}
 	ft_usleep(overseer->feed_time, overseer);
 	pthread_mutex_unlock(data->left_fork);
 	pthread_mutex_unlock(data->right_fork);
