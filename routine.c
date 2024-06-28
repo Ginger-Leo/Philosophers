@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 14:56:51 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 23:22:43 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:24:51 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,45 +31,48 @@ int dying(t_data *data, t_overseer *overseer)
 	if (overseer->death_flag == 1)
 		return (0);
 	return (1);
-}
+}	
 
-int	eating(t_data *data, t_overseer *overseer)
+int	eat_pray_love(t_data *data, t_overseer *overseer)
 {
 	if (overseer->death_flag == 1 || data->times_eaten >= overseer->times_to_eat)
 		return (0);
-	if (pthread_mutex_lock(data->right_fork) != 0
-		|| pthread_mutex_lock(data->left_fork) != 0)
-		return (0);
-	if (microphone(data, overseer, "has taken a fork") == 0
-		|| microphone(data, overseer, "has taken a fork") == 0
-		|| microphone(data, overseer, "is eating") == 0)
+	try_pick_fork(data, overseer);
+	data->last_time_eaten = what_time_is_it();
+	if (microphone(data, overseer, "is eating") == 0)
 		return (0);
 	data->times_eaten += 1;
-	data->last_time_eaten = what_time_is_it();
 	ft_usleep(overseer->feed_time, overseer);
-	if (pthread_mutex_unlock(data->left_fork) != 0
-		|| pthread_mutex_unlock(data->right_fork) != 0)
+	pthread_mutex_unlock(data->left_fork);
+	pthread_mutex_unlock(data->right_fork);
+	if (microphone(data, overseer, "is sleeping") == 0)
 		return (0);
-	return (1);
-}
-
-int	thinking(t_data *data, t_overseer *overseer)
-{
-	if (overseer->death_flag == 1)
-		return (0);
+	ft_usleep(overseer->sleep_time, overseer);
 	if (microphone(data, overseer, "is thinking") == 0)
 		return (0);
 	return (1);
 }
 
-int	sleeping(t_data *data, t_overseer *overseer)
+int	try_pick_fork(t_data *data, t_overseer *overseer)
 {
-	if (overseer->death_flag == 1)
-		return (0);
-	if (microphone(data, overseer, "is sleeping") == 0)
-		return (0);
-	ft_usleep(overseer->sleep_time, overseer);
-	if (overseer->death_flag == 1)
-		return (0);
-	return (1);
+	int i;
+
+	while (1)
+	{
+		i = 0;
+		if (!pthread_mutex_lock(data->right_fork))
+		{
+			i++;
+			microphone(data, overseer, "has taken a fork");
+		}
+		if (!pthread_mutex_lock(data->left_fork))
+			i++;
+		if (i == 2)
+		{
+			microphone(data, overseer, "has taken a fork");
+			return (1);
+		}
+		else
+			ft_usleep(100, overseer);
+	}
 }

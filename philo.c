@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 12:26:25 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/27 23:06:28 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/06/28 11:27:05 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	philosophize(t_data **data, t_overseer *overseer)
 	overseer->start_time = what_time_is_it();
 	while (i < overseer->no_of_philosophers)
 	{
-		data[i]->start_time = overseer->start_time;
+		data[i]->start_time = what_time_is_it();
 		data[i]->last_time_eaten = overseer->start_time;
 		if (pthread_create(&data[i]->p_thread, NULL,
 				&dinner_for_x, data[i]) != 0)
@@ -39,19 +39,14 @@ void	*dinner_for_x(void *data)
 	if (p_data->philo_id % 2 == 0)
 	{
 		microphone(p_data, p_data->overseer, "is thinking");
-		ft_usleep(42, p_data->overseer);
+		ft_usleep(p_data->overseer->feed_time / 10, p_data->overseer);
 	}
-	while (p_data->overseer->death_flag != 1
-		|| p_data->times_eaten <= p_data->overseer->times_to_eat)
+	while (1)
 	{
+		if (eat_pray_love(p_data, p_data->overseer) == 0
+			|| p_data->overseer->can_i_print == 1)
+			break ;
 		if (dying(p_data, p_data->overseer) == 0)
-			break ;
-		if (eating(p_data, p_data->overseer) == 0)
-			break ;
-		if (sleeping(p_data, p_data->overseer) == 0)
-			break ;
-		if (p_data->overseer->can_i_print == 1
-			|| thinking(p_data, p_data->overseer) == 0)
 			break ;
 	}
 	drop_mic_forks(p_data);
