@@ -6,7 +6,7 @@
 #    By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/30 10:11:18 by fdessoy-          #+#    #+#              #
-#    Updated: 2024/06/20 14:17:11 by fdessoy-         ###   ########.fr        #
+#    Updated: 2024/07/02 12:31:34 by fdessoy-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,26 +20,24 @@ SRC 		=	philo.c\
 				utils.c\
 				struct_utils.c\
 				main.c\
+				flags.c\
 				routine.c
-		
+
 OBJ  		= 	$(SRC:.c=.o) 
 
 $(NAME)		:	$(OBJ)
 				cc $(FLAGS) $(OBJ) -o $(NAME)
-				
+
 %.o			:	%.c
 				$(CC) $(FLAGS) -c $< -o $@
-					
+
 all			:	$(NAME) 
 
 clean		:	
 				rm -f $(OBJ)
 
-				 
-
 fclean		:	clean
 				rm -f $(NAME)
-
 
 re			:	fclean all
 

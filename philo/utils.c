@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 13:05:32 by fdessoy-          #+#    #+#             */
-/*   Updated: 2024/06/28 16:29:22 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:03:23 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ size_t	what_time_is_it(void)
 {
 	struct timeval	time;
 
-	if(gettimeofday(&time, NULL) == -1)
+	if (gettimeofday(&time, NULL) == -1)
 		ft_putstr_fd(ERR_TIME, 2);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
@@ -51,15 +51,13 @@ void	clearing(t_data **data, t_overseer *overseer)
 	int	i;
 
 	i = 0;
-
-	nuka_cola(NULL, overseer, data);
-	while (i < overseer->no_of_philosophers)
+	while (i < overseer->no_of_philo)
 	{
-		
 		if (pthread_join(data[i]->p_thread, NULL) != 0)
 			nuka_cola("Thread join failed\n", overseer, data);
 		i++;
 	}
+	nuka_cola(NULL, overseer, data);
 	i = 0;
 	while (data[i])
 	{
@@ -73,7 +71,6 @@ void	clearing(t_data **data, t_overseer *overseer)
 	free(overseer->meal_lock);
 	free(overseer->death_lock);
 	free(overseer);
-
 }
 
 void	nuka_cola(char *str, t_overseer *overseer, t_data **data)
@@ -83,7 +80,7 @@ void	nuka_cola(char *str, t_overseer *overseer, t_data **data)
 	i = 0;
 	if (str)
 		ft_putstr_fd(str, 2);
-	while (i < overseer->no_of_philosophers)
+	while (i < overseer->no_of_philo)
 	{
 		pthread_mutex_destroy(data[i]->right_fork);
 		i++;
@@ -97,12 +94,12 @@ void	ft_usleep(size_t milisecs, t_overseer *overseer)
 {
 	size_t	start;
 
+	if (check_death_flag(overseer) == 0
+		|| check_full_flag(overseer) == 0)
+		return ;
 	start = what_time_is_it();
 	while ((what_time_is_it() - start) < milisecs)
 	{
-		if (overseer->death_flag == 1)
-			return ;
-		else
-			usleep(500);
+		usleep(500);
 	}
 }

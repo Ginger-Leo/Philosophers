@@ -6,7 +6,7 @@
 /*   By: fdessoy- <fdessoy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:43:13 by lstorey           #+#    #+#             */
-/*   Updated: 2024/06/28 16:44:41 by fdessoy-         ###   ########.fr       */
+/*   Updated: 2024/07/02 15:02:36 by fdessoy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,18 @@
 
 /* structs */
 typedef pthread_mutex_t	t_mtx;
-typedef struct s_data t_data;
+typedef struct s_data	t_data;
 
 typedef struct s_overseer
 {
-	pthread_t			o_thread;
-	int					no_of_philosophers;
+	int					no_of_philo;
 	size_t				death_time;
 	size_t				feed_time;
 	size_t				sleep_time;
 	t_data				**data;
 	int					times_to_eat;
 	int					death_flag;
+	int					meal_flag;
 	int					can_i_print;
 	size_t				start_time;
 	t_mtx				*meal_lock;
@@ -66,7 +66,6 @@ typedef struct s_data
 void		philosophize(t_data **data, t_overseer *overseer);
 void		*dinner_for_x(void *data);
 int			monitoring(t_overseer *os);
-void		drop_mic_forks(t_data *data);
 int			dinner_for_one(t_data *data, t_overseer *overseer);
 
 /*					printer.c						*/
@@ -75,8 +74,14 @@ int			microphone(t_data *data, t_overseer *overseer, char *action);
 
 /*					routine.c						*/
 int			dying(t_overseer *overseer, t_data *data);
+int			full_belly(t_overseer *overseer, t_data **data);
+int			check_flags(t_overseer *overseer);
 int			eat_pray_love(t_data *data, t_overseer *overseer);
 int			try_pick_fork(t_data *data, t_overseer *overseer);
+
+/*					flags.c							*/
+int			check_full_flag(t_overseer *overseer);
+int			check_death_flag(t_overseer *overseer);
 
 /*					parsing.c						*/
 int			parsing(char **argv);

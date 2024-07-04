@@ -95,4 +95,11 @@ This project main objective is to create threads and, consequentially, to do mul
 1. Adding a new conditional function im_gonna_barf() to check the amount of times to eat and change the flag (overseer->eaten_flag) to quit the simulation;
 2. The race condition may be originating from the eating() because the forks are locked while one of the philosophers is trying to access them. Therefore, the solution may be to come up with a function that is going to keep the philosophers waiting for their forks when not available (function name is the_line());
 3. After using fsanitize=thread we were able to check which function was presenting race conditions. The eating() part of the routine has the a double lock in the microphone(), which already has a lock in itself and does not need an extraneous lock, otherwhise other philosophers will have problems trying to access it;
+
+01.07.2024
+1. Throughout two weeks we have stablished the main thread as the monitoring thread. Changes in flags are observed by the monitoring flag that will kill the simulation as it runs in an infinite loop looking for death andd meals conditions;
+2. All locks have been accounted for, but more testing is required to know if the extra unlocks at the end of simulation are actually required;
+3. Added a cleaning up function that join the pthread_mutex_destroy() functions together with all the freeing;
+4. Valgrind does not seem to show any leaks;
+5. 
 ```
